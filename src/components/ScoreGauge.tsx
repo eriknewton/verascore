@@ -35,11 +35,11 @@ export function ScoreGauge({ score, size = "md", label }: ScoreGaugeProps) {
             <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
               <stop
                 offset="0%"
-                stopColor={score >= 60 ? "#54dcbd" : "#ffb4ab"}
+                stopColor={score >= 60 ? "#02af92" : "#ffb4ab"}
               />
               <stop
                 offset="100%"
-                stopColor={score >= 80 ? "#adc6ff" : score >= 60 ? "#e9c400" : "#ffb4ab"}
+                stopColor={score >= 80 ? "#4a8eff" : score >= 60 ? "#e9c400" : "#ffb4ab"}
               />
             </linearGradient>
           </defs>
