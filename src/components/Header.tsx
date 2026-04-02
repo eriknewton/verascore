@@ -2,14 +2,11 @@ import Link from "next/link";
 
 export function Header() {
   return (
-    <header className="border-b border-border sticky top-0 z-50 bg-background/80 backdrop-blur-xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 w-full z-50 bg-[#0d131e]/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+      <div className="max-w-screen-2xl mx-auto px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-teal flex items-center justify-center">
-              <span className="text-white font-bold text-sm">V</span>
-            </div>
-            <span className="text-lg font-semibold tracking-tight text-foreground">
+            <span className="text-xl font-bold tracking-tight text-primary">
               Verascore
             </span>
           </Link>
@@ -17,21 +14,29 @@ export function Header() {
           <nav className="hidden sm:flex items-center gap-8">
             <Link
               href="/directory"
-              className="text-sm text-muted hover:text-foreground transition-colors"
+              className="font-[var(--font-space-grotesk)] text-xs uppercase tracking-widest text-muted hover:text-foreground transition-colors"
             >
               Directory
             </Link>
             <a
-              href="https://github.com/eriknewton/verascore"
+              href="https://github.com/eriknewton/sanctuary-framework"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-muted hover:text-foreground transition-colors"
+              className="font-[var(--font-space-grotesk)] text-xs uppercase tracking-widest text-muted hover:text-foreground transition-all hover:bg-white/5 px-3 py-1 rounded-lg"
             >
-              GitHub
+              Sanctuary Framework
+            </a>
+            <a
+              href="https://github.com/eriknewton/concordia-protocol"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-[var(--font-space-grotesk)] text-xs uppercase tracking-widest text-muted hover:text-foreground transition-all hover:bg-white/5 px-3 py-1 rounded-lg"
+            >
+              Concordia Protocol
             </a>
             <Link
               href="/directory"
-              className="text-sm px-4 py-2 rounded-lg bg-accent hover:bg-accent-hover text-white font-medium transition-colors"
+              className="px-6 py-2 rounded-full bg-primary-container text-[#00285c] font-[var(--font-space-grotesk)] text-xs font-bold uppercase tracking-widest hover:scale-95 transition-all duration-150"
             >
               Claim Your Agent
             </Link>
@@ -39,12 +44,13 @@ export function Header() {
 
           <Link
             href="/directory"
-            className="sm:hidden text-sm px-3 py-1.5 rounded-lg bg-accent hover:bg-accent-hover text-white font-medium transition-colors"
+            className="sm:hidden text-sm px-4 py-1.5 rounded-full bg-primary text-on-primary font-medium transition-colors"
           >
             Directory
           </Link>
         </div>
       </div>
+      <div className="nav-gradient-border" />
     </header>
   );
 }

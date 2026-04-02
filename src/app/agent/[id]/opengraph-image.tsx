@@ -19,8 +19,8 @@ export default async function Image({ params }: { params: Promise<{ id: string }
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "#0b0e17",
-            color: "#6b7a99",
+            background: "#0d131e",
+            color: "#8b90a0",
             fontSize: "32px",
           }}
         >
@@ -33,12 +33,12 @@ export default async function Image({ params }: { params: Promise<{ id: string }
 
   const tierColor =
     agent.trustTier === "verified-sovereign"
-      ? "#14b8a6"
+      ? "#54dcbd"
       : agent.trustTier === "verified-degraded"
-        ? "#f59e0b"
+        ? "#e9c400"
         : agent.trustTier === "self-attested"
-          ? "#6b7a99"
-          : "#ef4444";
+          ? "#8b90a0"
+          : "#ffb4ab";
 
   const tierLabel =
     agent.trustTier === "verified-sovereign"
@@ -57,7 +57,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
           height: "100%",
           display: "flex",
           flexDirection: "row",
-          background: "linear-gradient(135deg, #0b0e17 0%, #131825 50%, #0b0e17 100%)",
+          background: "linear-gradient(135deg, #0d131e 0%, #1a202b 50%, #0d131e 100%)",
           fontFamily: "system-ui, -apple-system, sans-serif",
           padding: "60px",
         }}
@@ -80,23 +80,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
               marginBottom: "16px",
             }}
           >
-            <div
-              style={{
-                width: "36px",
-                height: "36px",
-                borderRadius: "8px",
-                background: "linear-gradient(135deg, #3b82f6, #14b8a6)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-                fontSize: "18px",
-                fontWeight: "bold",
-              }}
-            >
-              V
-            </div>
-            <span style={{ fontSize: "20px", color: "#6b7a99" }}>
+            <span style={{ fontSize: "20px", color: "#adc6ff", fontWeight: "bold" }}>
               Verascore
             </span>
           </div>
@@ -105,7 +89,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
             style={{
               fontSize: "48px",
               fontWeight: "bold",
-              color: "#e8eaf0",
+              color: "#dde2f2",
               marginBottom: "12px",
               letterSpacing: "-1px",
             }}
@@ -137,7 +121,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
           <div
             style={{
               fontSize: "18px",
-              color: "#6b7a99",
+              color: "#8b90a0",
               lineHeight: "1.6",
               maxWidth: "500px",
               display: "-webkit-box",
@@ -165,7 +149,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
                   gap: "6px",
                 }}
               >
-                <span style={{ fontSize: "14px", color: "#6b7a99" }}>
+                <span style={{ fontSize: "14px", color: "#8b90a0" }}>
                   {layer.name}
                 </span>
                 <div
@@ -175,10 +159,10 @@ export default async function Image({ params }: { params: Promise<{ id: string }
                     borderRadius: "50%",
                     background:
                       layer.status === "active"
-                        ? "#14b8a6"
+                        ? "#54dcbd"
                         : layer.status === "degraded"
-                          ? "#f59e0b"
-                          : "#6b7a99",
+                          ? "#e9c400"
+                          : "#8b90a0",
                   }}
                 />
               </div>
@@ -200,7 +184,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
             style={{
               fontSize: "120px",
               fontWeight: "bold",
-              background: `linear-gradient(135deg, ${agent.overallScore >= 60 ? "#14b8a6" : "#ef4444"}, ${agent.overallScore >= 80 ? "#3b82f6" : agent.overallScore >= 60 ? "#f59e0b" : "#ef4444"})`,
+              background: `linear-gradient(135deg, ${agent.overallScore >= 60 ? "#54dcbd" : "#ffb4ab"}, ${agent.overallScore >= 80 ? "#adc6ff" : agent.overallScore >= 60 ? "#e9c400" : "#ffb4ab"})`,
               backgroundClip: "text",
               color: "transparent",
               lineHeight: "1",
@@ -211,7 +195,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
           <div
             style={{
               fontSize: "16px",
-              color: "#6b7a99",
+              color: "#8b90a0",
               textTransform: "uppercase",
               letterSpacing: "3px",
               marginTop: "8px",

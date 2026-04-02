@@ -15,7 +15,7 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0b0e17 0%, #131825 50%, #0b0e17 100%)",
+          background: "linear-gradient(135deg, #0d131e 0%, #1a202b 50%, #0d131e 100%)",
           fontFamily: "system-ui, -apple-system, sans-serif",
         }}
       >
@@ -27,27 +27,11 @@ export default async function Image() {
             marginBottom: "32px",
           }}
         >
-          <div
-            style={{
-              width: "64px",
-              height: "64px",
-              borderRadius: "16px",
-              background: "linear-gradient(135deg, #3b82f6, #14b8a6)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "white",
-              fontSize: "32px",
-              fontWeight: "bold",
-            }}
-          >
-            V
-          </div>
           <span
             style={{
               fontSize: "48px",
               fontWeight: "bold",
-              color: "#e8eaf0",
+              color: "#adc6ff",
               letterSpacing: "-1px",
             }}
           >
@@ -58,7 +42,7 @@ export default async function Image() {
           style={{
             fontSize: "64px",
             fontWeight: "bold",
-            background: "linear-gradient(90deg, #3b82f6, #14b8a6)",
+            background: "linear-gradient(90deg, #adc6ff, #54dcbd)",
             backgroundClip: "text",
             color: "transparent",
             marginBottom: "24px",
@@ -70,7 +54,7 @@ export default async function Image() {
         <div
           style={{
             fontSize: "24px",
-            color: "#6b7a99",
+            color: "#8b90a0",
             maxWidth: "700px",
             textAlign: "center",
             lineHeight: "1.5",

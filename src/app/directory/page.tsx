@@ -28,12 +28,15 @@ export default async function DirectoryPage({ searchParams }: PageProps) {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div className="max-w-screen-2xl mx-auto px-6 sm:px-8 py-8 sm:py-12 pt-24">
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+        <span className="font-[var(--font-space-grotesk)] text-secondary uppercase tracking-[0.3em] text-xs mb-2 block">
+          Live Directory
+        </span>
+        <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2 tracking-tight">
           Agent Directory
         </h1>
-        <p className="text-muted">
+        <p className="text-on-surface-variant">
           {result.total} agents tracked. Discover verified agents and check
           trust scores before you interact.
         </p>
@@ -49,7 +52,7 @@ export default async function DirectoryPage({ searchParams }: PageProps) {
 
       {result.data.length === 0 && (
         <div className="text-center py-16">
-          <p className="text-muted text-lg">No agents match your filters.</p>
+          <p className="text-on-surface-variant text-lg">No agents match your filters.</p>
         </div>
       )}
 
@@ -61,8 +64,8 @@ export default async function DirectoryPage({ searchParams }: PageProps) {
               href={`/directory?page=${i + 1}${sp.q ? `&q=${sp.q}` : ""}${sp.tier ? `&tier=${sp.tier}` : ""}${sp.sort ? `&sort=${sp.sort}` : ""}`}
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                 (sp.page ? parseInt(sp.page) : 1) === i + 1
-                  ? "bg-accent text-white"
-                  : "bg-surface border border-border text-muted hover:text-foreground"
+                  ? "bg-primary text-on-primary"
+                  : "bg-surface text-muted hover:text-foreground hover:bg-surface-high"
               }`}
             >
               {i + 1}

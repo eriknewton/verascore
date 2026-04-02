@@ -50,24 +50,24 @@ export function trustTierLabel(tier: TrustTier): string {
 export function trustTierColor(tier: TrustTier): string {
   switch (tier) {
     case "verified-sovereign":
-      return "text-teal bg-teal/10 border-teal/30";
+      return "text-secondary bg-secondary/10";
     case "verified-degraded":
-      return "text-amber bg-amber/10 border-amber/30";
+      return "text-tertiary bg-tertiary/10";
     case "self-attested":
-      return "text-muted bg-muted/10 border-muted/30";
+      return "text-muted bg-muted/10";
     case "unverified":
-      return "text-red bg-red/10 border-red/30";
+      return "text-error bg-error/10";
   }
 }
 
 export function statusColor(status: SovereigntyLevel): string {
   switch (status) {
     case "active":
-      return "text-teal";
+      return "text-secondary";
     case "degraded":
-      return "text-amber";
+      return "text-tertiary";
     case "inactive":
-      return "text-red";
+      return "text-error";
     case "unverified":
       return "text-muted";
   }
@@ -76,21 +76,21 @@ export function statusColor(status: SovereigntyLevel): string {
 export function statusBgColor(status: SovereigntyLevel): string {
   switch (status) {
     case "active":
-      return "bg-teal/15 border-teal/30 text-teal";
+      return "bg-secondary/15 text-secondary";
     case "degraded":
-      return "bg-amber/15 border-amber/30 text-amber";
+      return "bg-tertiary/15 text-tertiary";
     case "inactive":
-      return "bg-red/15 border-red/30 text-red";
+      return "bg-error/15 text-error";
     case "unverified":
-      return "bg-muted/15 border-muted/30 text-muted";
+      return "bg-muted/15 text-muted";
   }
 }
 
 export function scoreColor(score: number): string {
-  if (score >= 80) return "text-teal";
-  if (score >= 60) return "text-amber";
-  if (score >= 30) return "text-amber-dim";
-  return "text-red";
+  if (score >= 80) return "text-secondary";
+  if (score >= 60) return "text-tertiary";
+  if (score >= 30) return "text-tertiary";
+  return "text-error";
 }
 
 export function truncateDid(did: string): string {

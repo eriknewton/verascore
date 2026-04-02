@@ -16,16 +16,16 @@ export function AgentCard({ agent }: AgentCardProps) {
   return (
     <Link
       href={`/agent/${agent.id}`}
-      className="group block p-5 rounded-xl bg-surface border border-border hover:border-border-light hover:bg-surface-hover transition-all"
+      className="group block p-5 rounded-xl bg-surface hover:bg-surface-high transition-all duration-300"
     >
       <div className="flex items-start justify-between gap-4 mb-4">
         <div className="min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <h3 className="text-base font-semibold text-foreground truncate group-hover:text-accent transition-colors">
+            <h3 className="text-base font-semibold text-foreground truncate group-hover:text-primary transition-colors">
               {agent.name}
             </h3>
             {agent.claimStatus === "unclaimed" && (
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-border text-muted uppercase tracking-wider">
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-surface-highest text-muted uppercase tracking-wider font-[var(--font-space-grotesk)]">
                 Unclaimed
               </span>
             )}
@@ -35,7 +35,7 @@ export function AgentCard({ agent }: AgentCardProps) {
         <ScoreGauge score={agent.overallScore} size="sm" />
       </div>
 
-      <p className="text-sm text-muted leading-relaxed mb-4 line-clamp-2">
+      <p className="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-2">
         {agent.description}
       </p>
 
@@ -46,9 +46,9 @@ export function AgentCard({ agent }: AgentCardProps) {
             <div
               className={cn(
                 "w-2 h-2 rounded-full",
-                layer.status === "active" && "bg-teal",
-                layer.status === "degraded" && "bg-amber",
-                layer.status === "inactive" && "bg-red",
+                layer.status === "active" && "bg-secondary",
+                layer.status === "degraded" && "bg-tertiary",
+                layer.status === "inactive" && "bg-error",
                 layer.status === "unverified" && "bg-muted/30"
               )}
             />

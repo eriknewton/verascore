@@ -19,8 +19,8 @@ export default async function Image({ params }: { params: Promise<{ id: string }
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "#0b0e17",
-            color: "#6b7a99",
+            background: "#0d131e",
+            color: "#8b90a0",
             fontSize: "32px",
           }}
         >
@@ -44,7 +44,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0b0e17 0%, #131825 50%, #0b0e17 100%)",
+          background: "linear-gradient(135deg, #0d131e 0%, #1a202b 50%, #0d131e 100%)",
           fontFamily: "system-ui, -apple-system, sans-serif",
           padding: "60px",
         }}
@@ -58,23 +58,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
             marginBottom: "40px",
           }}
         >
-          <div
-            style={{
-              width: "36px",
-              height: "36px",
-              borderRadius: "8px",
-              background: "linear-gradient(135deg, #3b82f6, #14b8a6)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "white",
-              fontSize: "18px",
-              fontWeight: "bold",
-            }}
-          >
-            V
-          </div>
-          <span style={{ fontSize: "20px", color: "#6b7a99" }}>Verascore</span>
+          <span style={{ fontSize: "20px", color: "#adc6ff", fontWeight: "bold" }}>Verascore</span>
         </div>
 
         {/* Status */}
@@ -82,7 +66,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
           style={{
             fontSize: "24px",
             fontWeight: "bold",
-            color: isValid ? "#14b8a6" : "#ef4444",
+            color: isValid ? "#54dcbd" : "#ffb4ab",
             marginBottom: "32px",
             textTransform: "uppercase",
             letterSpacing: "3px",
@@ -111,12 +95,12 @@ export default async function Image({ params }: { params: Promise<{ id: string }
               style={{
                 fontSize: "36px",
                 fontWeight: "bold",
-                color: "#e8eaf0",
+                color: "#dde2f2",
               }}
             >
               {attestation.initiatorName}
             </div>
-            <div style={{ fontSize: "16px", color: "#6b7a99", marginTop: "4px" }}>
+            <div style={{ fontSize: "16px", color: "#8b90a0", marginTop: "4px" }}>
               Initiator
             </div>
           </div>
@@ -131,7 +115,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
             <div
               style={{
                 fontSize: "48px",
-                color: isValid ? "#14b8a6" : "#6b7a99",
+                color: isValid ? "#54dcbd" : "#8b90a0",
               }}
             >
               &#x2194;
@@ -149,12 +133,12 @@ export default async function Image({ params }: { params: Promise<{ id: string }
               style={{
                 fontSize: "36px",
                 fontWeight: "bold",
-                color: "#e8eaf0",
+                color: "#dde2f2",
               }}
             >
               {attestation.responderName}
             </div>
-            <div style={{ fontSize: "16px", color: "#6b7a99", marginTop: "4px" }}>
+            <div style={{ fontSize: "16px", color: "#8b90a0", marginTop: "4px" }}>
               Responder
             </div>
           </div>
@@ -166,7 +150,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
             display: "flex",
             gap: "24px",
             fontSize: "16px",
-            color: "#6b7a99",
+            color: "#8b90a0",
           }}
         >
           <span>

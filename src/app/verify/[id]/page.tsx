@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAttestation } from "@/lib/data";
-import { cn, formatDateTime, trustTierLabel, statusBgColor, scoreColor } from "@/lib/utils";
+import { cn, formatDateTime, statusBgColor, scoreColor } from "@/lib/utils";
 import { TrustBadge } from "@/components/TrustBadge";
-import { SovereigntyBreakdown } from "@/components/SovereigntyBreakdown";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -32,20 +31,20 @@ export default async function VerifyPage({ params }: PageProps) {
   const isValid = attestation.verified && !isExpired;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 pt-24">
       {/* Status Banner */}
       <div
         className={cn(
-          "rounded-xl p-6 mb-8 border text-center",
+          "rounded-xl p-6 mb-8 text-center",
           isValid
-            ? "bg-teal/5 border-teal/20"
-            : "bg-red/5 border-red/20"
+            ? "bg-secondary/5"
+            : "bg-error/5"
         )}
       >
         <div className="flex items-center justify-center gap-3 mb-2">
           {isValid ? (
             <svg
-              className="w-8 h-8 text-teal"
+              className="w-8 h-8 text-secondary"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -59,7 +58,7 @@ export default async function VerifyPage({ params }: PageProps) {
             </svg>
           ) : (
             <svg
-              className="w-8 h-8 text-red"
+              className="w-8 h-8 text-error"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -75,13 +74,13 @@ export default async function VerifyPage({ params }: PageProps) {
           <h1
             className={cn(
               "text-2xl font-bold",
-              isValid ? "text-teal" : "text-red"
+              isValid ? "text-secondary" : "text-error"
             )}
           >
             {isValid ? "Verified Handshake" : isExpired ? "Expired Attestation" : "Invalid Attestation"}
           </h1>
         </div>
-        <p className="text-muted text-sm">
+        <p className="text-on-surface-variant text-sm">
           Sovereignty handshake between two agents, cryptographically attested
           and independently verifiable.
         </p>
@@ -104,35 +103,35 @@ export default async function VerifyPage({ params }: PageProps) {
       </div>
 
       {/* Attestation Details */}
-      <div className="rounded-xl bg-surface border border-border p-6 mb-8">
+      <div className="rounded-xl bg-surface p-6 mb-8">
         <h2 className="text-lg font-semibold text-foreground mb-4">
           Attestation Details
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <dt className="text-xs text-muted mb-0.5">Trust Tier</dt>
+            <dt className="text-xs text-muted mb-0.5 font-[var(--font-space-grotesk)] uppercase tracking-wider">Trust Tier</dt>
             <dd>
               <TrustBadge tier={attestation.trustTier} />
             </dd>
           </div>
           <div>
-            <dt className="text-xs text-muted mb-0.5">Protocol</dt>
+            <dt className="text-xs text-muted mb-0.5 font-[var(--font-space-grotesk)] uppercase tracking-wider">Protocol</dt>
             <dd className="text-sm text-foreground font-mono">
               {attestation.protocol} v{attestation.protocolVersion}
             </dd>
           </div>
           <div>
-            <dt className="text-xs text-muted mb-0.5">Timestamp</dt>
+            <dt className="text-xs text-muted mb-0.5 font-[var(--font-space-grotesk)] uppercase tracking-wider">Timestamp</dt>
             <dd className="text-sm text-foreground">
               {formatDateTime(attestation.timestamp)}
             </dd>
           </div>
           <div>
-            <dt className="text-xs text-muted mb-0.5">Expires</dt>
+            <dt className="text-xs text-muted mb-0.5 font-[var(--font-space-grotesk)] uppercase tracking-wider">Expires</dt>
             <dd
               className={cn(
                 "text-sm",
-                isExpired ? "text-red" : "text-foreground"
+                isExpired ? "text-error" : "text-foreground"
               )}
             >
               {formatDateTime(attestation.expiresAt)}
@@ -140,16 +139,16 @@ export default async function VerifyPage({ params }: PageProps) {
             </dd>
           </div>
           <div>
-            <dt className="text-xs text-muted mb-0.5">Attestation ID</dt>
+            <dt className="text-xs text-muted mb-0.5 font-[var(--font-space-grotesk)] uppercase tracking-wider">Attestation ID</dt>
             <dd className="text-xs text-foreground font-mono">{attestation.id}</dd>
           </div>
           <div>
-            <dt className="text-xs text-muted mb-0.5">Status</dt>
+            <dt className="text-xs text-muted mb-0.5 font-[var(--font-space-grotesk)] uppercase tracking-wider">Status</dt>
             <dd>
               {isValid ? (
-                <span className="text-sm text-teal font-medium">Valid</span>
+                <span className="text-sm text-secondary font-medium">Valid</span>
               ) : (
-                <span className="text-sm text-red font-medium">
+                <span className="text-sm text-error font-medium">
                   {isExpired ? "Expired" : "Invalid"}
                 </span>
               )}
@@ -159,22 +158,22 @@ export default async function VerifyPage({ params }: PageProps) {
       </div>
 
       {/* Cryptographic Proof */}
-      <details className="rounded-xl bg-surface border border-border overflow-hidden mb-8">
-        <summary className="p-6 cursor-pointer text-sm font-semibold text-foreground hover:bg-surface-hover transition-colors">
+      <details className="rounded-xl bg-surface overflow-hidden mb-8">
+        <summary className="p-6 cursor-pointer text-sm font-semibold text-foreground hover:bg-surface-high transition-colors">
           Cryptographic Proof
         </summary>
-        <div className="px-6 pb-6 border-t border-border pt-4">
-          <div className="p-4 rounded-lg bg-background font-mono text-xs text-muted break-all leading-relaxed">
+        <div className="px-6 pb-6 pt-4">
+          <div className="p-4 rounded-lg bg-surface-lowest font-mono text-xs text-muted break-all leading-relaxed">
             <p className="mb-2">
-              <span className="text-foreground">Signature:</span>
+              <span className="text-secondary opacity-80">// SIGNATURE</span>
             </p>
             <p className="mb-4">{attestation.signature}</p>
             <p className="mb-2">
-              <span className="text-foreground">Protocol:</span>{" "}
+              <span className="text-primary opacity-80">// PROTOCOL</span>{" "}
               {attestation.protocol}
             </p>
             <p>
-              <span className="text-foreground">Version:</span>{" "}
+              <span className="text-primary opacity-80">// VERSION</span>{" "}
               {attestation.protocolVersion}
             </p>
           </div>
@@ -183,10 +182,10 @@ export default async function VerifyPage({ params }: PageProps) {
 
       {/* Share */}
       <div className="text-center">
-        <p className="text-sm text-muted mb-3">
+        <p className="text-sm text-on-surface-variant mb-3">
           Share this verification page to prove this handshake happened.
         </p>
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-surface border border-border font-mono text-xs text-muted">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-surface font-mono text-xs text-muted">
           verascore.ai/verify/{attestation.id}
         </div>
       </div>
@@ -206,13 +205,13 @@ function PartyCard({
   posture: { name: string; label: string; score: number; status: string; description: string }[];
 }) {
   return (
-    <div className="rounded-xl bg-surface border border-border p-5">
-      <span className="text-xs text-muted uppercase tracking-wider mb-2 block">
+    <div className="rounded-xl bg-surface p-5">
+      <span className="text-xs text-muted uppercase tracking-wider mb-2 block font-[var(--font-space-grotesk)]">
         {label}
       </span>
       <Link
         href={`/agent/${agentId}`}
-        className="text-lg font-semibold text-foreground hover:text-accent transition-colors block mb-4"
+        className="text-lg font-semibold text-foreground hover:text-primary transition-colors block mb-4"
       >
         {name}
       </Link>
@@ -222,16 +221,16 @@ function PartyCard({
             <span className="text-xs font-mono text-muted w-6">
               {layer.name}
             </span>
-            <div className="flex-1 h-1.5 rounded-full bg-border overflow-hidden">
+            <div className="flex-1 h-1.5 rounded-full bg-surface-highest overflow-hidden">
               <div
                 className={cn(
                   "h-full rounded-full",
                   layer.score >= 80
-                    ? "bg-teal"
+                    ? "bg-secondary"
                     : layer.score >= 50
-                      ? "bg-amber"
+                      ? "bg-tertiary"
                       : layer.score > 0
-                        ? "bg-red"
+                        ? "bg-error"
                         : "bg-muted/30"
                 )}
                 style={{ width: `${layer.score}%` }}
@@ -247,7 +246,7 @@ function PartyCard({
             </span>
             <span
               className={cn(
-                "text-[10px] px-1.5 py-0.5 rounded-full border capitalize",
+                "text-[10px] px-1.5 py-0.5 rounded-full capitalize font-[var(--font-space-grotesk)]",
                 statusBgColor(layer.status as "active" | "degraded" | "inactive" | "unverified")
               )}
             >

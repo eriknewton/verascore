@@ -11,9 +11,9 @@ export function SovereigntyBreakdown({ layers }: SovereigntyBreakdownProps) {
       {layers.map((layer) => (
         <div
           key={layer.name}
-          className="flex items-center gap-4 p-3 rounded-lg bg-surface border border-border"
+          className="flex items-center gap-4 p-3 rounded-lg bg-surface"
         >
-          <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-background flex items-center justify-center">
+          <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-surface-lowest flex items-center justify-center">
             <span className="text-sm font-mono font-bold text-muted">
               {layer.name}
             </span>
@@ -26,7 +26,7 @@ export function SovereigntyBreakdown({ layers }: SovereigntyBreakdownProps) {
               </span>
               <span
                 className={cn(
-                  "text-xs px-2 py-0.5 rounded-full border capitalize",
+                  "text-xs px-2 py-0.5 rounded-full capitalize font-[var(--font-space-grotesk)]",
                   statusBgColor(layer.status)
                 )}
               >
@@ -35,16 +35,16 @@ export function SovereigntyBreakdown({ layers }: SovereigntyBreakdownProps) {
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-1.5 rounded-full bg-border overflow-hidden">
+              <div className="flex-1 h-1.5 rounded-full bg-surface-highest overflow-hidden">
                 <div
                   className={cn(
                     "h-full rounded-full transition-all",
                     layer.score >= 80
-                      ? "bg-teal"
+                      ? "bg-secondary"
                       : layer.score >= 50
-                        ? "bg-amber"
+                        ? "bg-tertiary"
                         : layer.score > 0
-                          ? "bg-red"
+                          ? "bg-error"
                           : "bg-muted/30"
                   )}
                   style={{ width: `${layer.score}%` }}

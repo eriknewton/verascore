@@ -35,11 +35,11 @@ export function ScoreGauge({ score, size = "md", label }: ScoreGaugeProps) {
             <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
               <stop
                 offset="0%"
-                stopColor={score >= 60 ? "#14b8a6" : "#ef4444"}
+                stopColor={score >= 60 ? "#54dcbd" : "#ffb4ab"}
               />
               <stop
                 offset="100%"
-                stopColor={score >= 80 ? "#3b82f6" : score >= 60 ? "#f59e0b" : "#ef4444"}
+                stopColor={score >= 80 ? "#adc6ff" : score >= 60 ? "#e9c400" : "#ffb4ab"}
               />
             </linearGradient>
           </defs>
@@ -50,7 +50,7 @@ export function ScoreGauge({ score, size = "md", label }: ScoreGaugeProps) {
             fill="none"
             stroke="currentColor"
             strokeWidth={stroke}
-            className="text-border"
+            className="text-surface-highest"
           />
           <circle
             cx={center}
@@ -70,7 +70,11 @@ export function ScoreGauge({ score, size = "md", label }: ScoreGaugeProps) {
           </span>
         </div>
       </div>
-      {label && <span className="text-xs text-muted uppercase tracking-wider">{label}</span>}
+      {label && (
+        <span className="text-[10px] text-muted uppercase tracking-widest font-[var(--font-space-grotesk)]">
+          {label}
+        </span>
+      )}
     </div>
   );
 }
