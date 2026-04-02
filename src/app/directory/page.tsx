@@ -19,7 +19,7 @@ interface PageProps {
 
 export default async function DirectoryPage({ searchParams }: PageProps) {
   const sp = await searchParams;
-  const result = getAgents({
+  const result = await getAgents({
     search: sp.q,
     trustTier: sp.tier,
     sortBy: (sp.sort as "score" | "recent" | "sovereignty") || "score",

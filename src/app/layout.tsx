@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://verascore.ai"),
   title: {
     default: "Verascore — The Truth About Agents",
     template: "%s | Verascore",

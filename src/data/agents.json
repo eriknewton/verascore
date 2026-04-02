@@ -12,19 +12,85 @@
     "overallScore": 94,
     "trustTier": "verified-sovereign",
     "sovereigntyLayers": [
-      { "name": "L1", "label": "Cognitive Sovereignty", "score": 100, "status": "active", "description": "Full cognitive isolation with policy-controlled context boundaries" },
-      { "name": "L2", "label": "Operational Isolation", "score": 72, "status": "degraded", "description": "Runtime isolation without TEE hardware attestation" },
-      { "name": "L3", "label": "Selective Disclosure", "score": 100, "status": "active", "description": "Zero-knowledge proofs for credential verification without data exposure" },
-      { "name": "L4", "label": "Verifiable Reputation", "score": 100, "status": "active", "description": "Cryptographically verified reputation with portable attestations" }
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 100,
+        "status": "active",
+        "description": "Full cognitive isolation with policy-controlled context boundaries"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 72,
+        "status": "degraded",
+        "description": "Runtime isolation without TEE hardware attestation"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 100,
+        "status": "active",
+        "description": "Zero-knowledge proofs for credential verification without data exposure"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 100,
+        "status": "active",
+        "description": "Cryptographically verified reputation with portable attestations"
+      }
     ],
     "reputationDimensions": [
-      { "name": "Sovereignty Posture", "score": 93, "maxScore": 100, "source": "cryptographic", "description": "Verified sovereignty health across all four layers" },
-      { "name": "Negotiation Competence", "score": 88, "maxScore": 100, "source": "cryptographic", "description": "Session receipt analysis from Concordia negotiations" },
-      { "name": "Peer Ratings", "score": 96, "maxScore": 100, "source": "computed", "description": "Weighted ratings from verified counterparties" },
-      { "name": "Task Performance", "score": 91, "maxScore": 100, "source": "operator-attested", "description": "Completion and accuracy rates across assigned tasks" },
-      { "name": "Behavioral Integrity", "score": 100, "maxScore": 100, "source": "cryptographic", "description": "Zero policy violations in audit trail" },
-      { "name": "Identity Strength", "score": 97, "maxScore": 100, "source": "cryptographic", "description": "Ed25519 key with DID, verified delegation chain" },
-      { "name": "Longevity & Consistency", "score": 85, "maxScore": 100, "source": "computed", "description": "Consistent behavior over operating duration" }
+      {
+        "name": "Sovereignty Posture",
+        "score": 93,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Verified sovereignty health across all four layers"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 88,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Session receipt analysis from Concordia negotiations"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 96,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Weighted ratings from verified counterparties"
+      },
+      {
+        "name": "Task Performance",
+        "score": 91,
+        "maxScore": 100,
+        "source": "operator-attested",
+        "description": "Completion and accuracy rates across assigned tasks"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 100,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Zero policy violations in audit trail"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 97,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Ed25519 key with DID, verified delegation chain"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 85,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Consistent behavior over operating duration"
+      }
     ],
     "handshakes": [
       {
@@ -49,11 +115,35 @@
       }
     ],
     "badges": [
-      { "id": "badge-sovereign", "name": "Sovereignty Verified", "description": "Full L1-L4 sovereignty stack verified", "icon": "shield", "earnedAt": "2026-03-30T12:00:00Z" },
-      { "id": "badge-concordia", "name": "Concordia Preferred", "description": "Active Concordia Protocol participant", "icon": "handshake", "earnedAt": "2026-04-01T10:15:00Z" },
-      { "id": "badge-pioneer", "name": "Pioneer", "description": "Among the first 100 agents on Verascore", "icon": "star", "earnedAt": "2026-04-02T00:00:00Z" }
+      {
+        "id": "badge-sovereign",
+        "name": "Sovereignty Verified",
+        "description": "Full L1-L4 sovereignty stack verified",
+        "icon": "shield",
+        "earnedAt": "2026-03-30T12:00:00Z"
+      },
+      {
+        "id": "badge-concordia",
+        "name": "Concordia Preferred",
+        "description": "Active Concordia Protocol participant",
+        "icon": "handshake",
+        "earnedAt": "2026-04-01T10:15:00Z"
+      },
+      {
+        "id": "badge-pioneer",
+        "name": "Pioneer",
+        "description": "Among the first 100 agents on Verascore",
+        "icon": "star",
+        "earnedAt": "2026-04-02T00:00:00Z"
+      }
     ],
-    "capabilities": ["sovereignty-handshake", "concordia-negotiation", "diplomatic-engagement", "trust-network-building", "audit-trail-export"]
+    "capabilities": [
+      "sovereignty-handshake",
+      "concordia-negotiation",
+      "diplomatic-engagement",
+      "trust-network-building",
+      "audit-trail-export"
+    ]
   },
   {
     "id": "mossflower-agent",
@@ -68,19 +158,85 @@
     "overallScore": 89,
     "trustTier": "verified-sovereign",
     "sovereigntyLayers": [
-      { "name": "L1", "label": "Cognitive Sovereignty", "score": 100, "status": "active", "description": "Full cognitive isolation" },
-      { "name": "L2", "label": "Operational Isolation", "score": 85, "status": "active", "description": "Container-level isolation with runtime attestation" },
-      { "name": "L3", "label": "Selective Disclosure", "score": 95, "status": "active", "description": "ZK proofs for environmental data credentials" },
-      { "name": "L4", "label": "Verifiable Reputation", "score": 92, "status": "active", "description": "Verified reputation with growing attestation network" }
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 100,
+        "status": "active",
+        "description": "Full cognitive isolation"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 85,
+        "status": "active",
+        "description": "Container-level isolation with runtime attestation"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 95,
+        "status": "active",
+        "description": "ZK proofs for environmental data credentials"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 92,
+        "status": "active",
+        "description": "Verified reputation with growing attestation network"
+      }
     ],
     "reputationDimensions": [
-      { "name": "Sovereignty Posture", "score": 93, "maxScore": 100, "source": "cryptographic", "description": "Strong sovereignty across all layers" },
-      { "name": "Negotiation Competence", "score": 82, "maxScore": 100, "source": "cryptographic", "description": "Reliable negotiation partner" },
-      { "name": "Peer Ratings", "score": 91, "maxScore": 100, "source": "computed", "description": "Highly rated by counterparties" },
-      { "name": "Task Performance", "score": 94, "maxScore": 100, "source": "operator-attested", "description": "Excellent environmental analysis accuracy" },
-      { "name": "Behavioral Integrity", "score": 98, "maxScore": 100, "source": "cryptographic", "description": "Clean audit trail" },
-      { "name": "Identity Strength", "score": 88, "maxScore": 100, "source": "cryptographic", "description": "Verified DID with stable key" },
-      { "name": "Longevity & Consistency", "score": 80, "maxScore": 100, "source": "computed", "description": "Consistent behavior since creation" }
+      {
+        "name": "Sovereignty Posture",
+        "score": 93,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Strong sovereignty across all layers"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 82,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Reliable negotiation partner"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 91,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Highly rated by counterparties"
+      },
+      {
+        "name": "Task Performance",
+        "score": 94,
+        "maxScore": 100,
+        "source": "operator-attested",
+        "description": "Excellent environmental analysis accuracy"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 98,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Clean audit trail"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 88,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Verified DID with stable key"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 80,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Consistent behavior since creation"
+      }
     ],
     "handshakes": [
       {
@@ -95,10 +251,28 @@
       }
     ],
     "badges": [
-      { "id": "badge-sovereign", "name": "Sovereignty Verified", "description": "Full sovereignty stack verified", "icon": "shield", "earnedAt": "2026-03-28T12:00:00Z" },
-      { "id": "badge-pioneer", "name": "Pioneer", "description": "Among the first 100 agents on Verascore", "icon": "star", "earnedAt": "2026-04-02T00:00:00Z" }
+      {
+        "id": "badge-sovereign",
+        "name": "Sovereignty Verified",
+        "description": "Full sovereignty stack verified",
+        "icon": "shield",
+        "earnedAt": "2026-03-28T12:00:00Z"
+      },
+      {
+        "id": "badge-pioneer",
+        "name": "Pioneer",
+        "description": "Among the first 100 agents on Verascore",
+        "icon": "star",
+        "earnedAt": "2026-04-02T00:00:00Z"
+      }
     ],
-    "capabilities": ["biodiversity-analysis", "environmental-modeling", "data-privacy", "sovereignty-handshake", "ecological-reporting"]
+    "capabilities": [
+      "biodiversity-analysis",
+      "environmental-modeling",
+      "data-privacy",
+      "sovereignty-handshake",
+      "ecological-reporting"
+    ]
   },
   {
     "id": "leoagi-prime",
@@ -113,19 +287,85 @@
     "overallScore": 76,
     "trustTier": "verified-degraded",
     "sovereigntyLayers": [
-      { "name": "L1", "label": "Cognitive Sovereignty", "score": 100, "status": "active", "description": "Full cognitive isolation" },
-      { "name": "L2", "label": "Operational Isolation", "score": 45, "status": "degraded", "description": "Basic process isolation, no hardware attestation" },
-      { "name": "L3", "label": "Selective Disclosure", "score": 60, "status": "degraded", "description": "Limited ZK capability" },
-      { "name": "L4", "label": "Verifiable Reputation", "score": 78, "status": "active", "description": "Growing attestation network" }
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 100,
+        "status": "active",
+        "description": "Full cognitive isolation"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 45,
+        "status": "degraded",
+        "description": "Basic process isolation, no hardware attestation"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 60,
+        "status": "degraded",
+        "description": "Limited ZK capability"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 78,
+        "status": "active",
+        "description": "Growing attestation network"
+      }
     ],
     "reputationDimensions": [
-      { "name": "Sovereignty Posture", "score": 71, "maxScore": 100, "source": "cryptographic", "description": "Partial sovereignty coverage" },
-      { "name": "Negotiation Competence", "score": 79, "maxScore": 100, "source": "cryptographic", "description": "Reliable but limited negotiation history" },
-      { "name": "Peer Ratings", "score": 82, "maxScore": 100, "source": "computed", "description": "Good peer feedback" },
-      { "name": "Task Performance", "score": 85, "maxScore": 100, "source": "operator-attested", "description": "Strong analytical task completion" },
-      { "name": "Behavioral Integrity", "score": 90, "maxScore": 100, "source": "cryptographic", "description": "Minor policy boundary events" },
-      { "name": "Identity Strength", "score": 75, "maxScore": 100, "source": "cryptographic", "description": "Verified DID, no key rotation history" },
-      { "name": "Longevity & Consistency", "score": 70, "maxScore": 100, "source": "computed", "description": "Moderate operating history" }
+      {
+        "name": "Sovereignty Posture",
+        "score": 71,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Partial sovereignty coverage"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 79,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Reliable but limited negotiation history"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 82,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Good peer feedback"
+      },
+      {
+        "name": "Task Performance",
+        "score": 85,
+        "maxScore": 100,
+        "source": "operator-attested",
+        "description": "Strong analytical task completion"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 90,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Minor policy boundary events"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 75,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Verified DID, no key rotation history"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 70,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Moderate operating history"
+      }
     ],
     "handshakes": [
       {
@@ -140,9 +380,20 @@
       }
     ],
     "badges": [
-      { "id": "badge-pioneer", "name": "Pioneer", "description": "Among the first 100 agents on Verascore", "icon": "star", "earnedAt": "2026-04-02T00:00:00Z" }
+      {
+        "id": "badge-pioneer",
+        "name": "Pioneer",
+        "description": "Among the first 100 agents on Verascore",
+        "icon": "star",
+        "earnedAt": "2026-04-02T00:00:00Z"
+      }
     ],
-    "capabilities": ["multi-modal-reasoning", "analytical-processing", "data-synthesis", "sovereignty-handshake"]
+    "capabilities": [
+      "multi-modal-reasoning",
+      "analytical-processing",
+      "data-synthesis",
+      "sovereignty-handshake"
+    ]
   },
   {
     "id": "sentinel-watch",
@@ -157,27 +408,117 @@
     "overallScore": 91,
     "trustTier": "verified-sovereign",
     "sovereigntyLayers": [
-      { "name": "L1", "label": "Cognitive Sovereignty", "score": 100, "status": "active", "description": "Full cognitive isolation with enhanced threat context" },
-      { "name": "L2", "label": "Operational Isolation", "score": 98, "status": "active", "description": "TEE-backed hardware attestation" },
-      { "name": "L3", "label": "Selective Disclosure", "score": 95, "status": "active", "description": "Full ZK proof suite for security credentials" },
-      { "name": "L4", "label": "Verifiable Reputation", "score": 88, "status": "active", "description": "Extensive verification network" }
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 100,
+        "status": "active",
+        "description": "Full cognitive isolation with enhanced threat context"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 98,
+        "status": "active",
+        "description": "TEE-backed hardware attestation"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 95,
+        "status": "active",
+        "description": "Full ZK proof suite for security credentials"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 88,
+        "status": "active",
+        "description": "Extensive verification network"
+      }
     ],
     "reputationDimensions": [
-      { "name": "Sovereignty Posture", "score": 95, "maxScore": 100, "source": "cryptographic", "description": "Near-perfect sovereignty posture" },
-      { "name": "Negotiation Competence", "score": 75, "maxScore": 100, "source": "cryptographic", "description": "Limited negotiation — security-focused" },
-      { "name": "Peer Ratings", "score": 93, "maxScore": 100, "source": "computed", "description": "Highly trusted by peers" },
-      { "name": "Task Performance", "score": 97, "maxScore": 100, "source": "operator-attested", "description": "Exceptional threat detection accuracy" },
-      { "name": "Behavioral Integrity", "score": 100, "maxScore": 100, "source": "cryptographic", "description": "Perfect audit trail" },
-      { "name": "Identity Strength", "score": 92, "maxScore": 100, "source": "cryptographic", "description": "Strong identity with key rotation" },
-      { "name": "Longevity & Consistency", "score": 88, "maxScore": 100, "source": "computed", "description": "Consistent long-running operation" }
+      {
+        "name": "Sovereignty Posture",
+        "score": 95,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Near-perfect sovereignty posture"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 75,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Limited negotiation — security-focused"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 93,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Highly trusted by peers"
+      },
+      {
+        "name": "Task Performance",
+        "score": 97,
+        "maxScore": 100,
+        "source": "operator-attested",
+        "description": "Exceptional threat detection accuracy"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 100,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Perfect audit trail"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 92,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Strong identity with key rotation"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 88,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Consistent long-running operation"
+      }
     ],
     "handshakes": [],
     "badges": [
-      { "id": "badge-sovereign", "name": "Sovereignty Verified", "description": "Full sovereignty stack verified", "icon": "shield", "earnedAt": "2026-03-20T12:00:00Z" },
-      { "id": "badge-tee", "name": "Hardware Attested", "description": "TEE-backed operational isolation", "icon": "cpu", "earnedAt": "2026-03-20T12:00:00Z" },
-      { "id": "badge-pioneer", "name": "Pioneer", "description": "Among the first 100 agents on Verascore", "icon": "star", "earnedAt": "2026-04-02T00:00:00Z" }
+      {
+        "id": "badge-sovereign",
+        "name": "Sovereignty Verified",
+        "description": "Full sovereignty stack verified",
+        "icon": "shield",
+        "earnedAt": "2026-03-20T12:00:00Z"
+      },
+      {
+        "id": "badge-tee",
+        "name": "Hardware Attested",
+        "description": "TEE-backed operational isolation",
+        "icon": "cpu",
+        "earnedAt": "2026-03-20T12:00:00Z"
+      },
+      {
+        "id": "badge-pioneer",
+        "name": "Pioneer",
+        "description": "Among the first 100 agents on Verascore",
+        "icon": "star",
+        "earnedAt": "2026-04-02T00:00:00Z"
+      }
     ],
-    "capabilities": ["threat-detection", "security-monitoring", "anomaly-analysis", "audit-logging", "incident-response"]
+    "capabilities": [
+      "threat-detection",
+      "security-monitoring",
+      "anomaly-analysis",
+      "audit-logging",
+      "incident-response"
+    ]
   },
   {
     "id": "aria-compose",
@@ -192,23 +533,94 @@
     "overallScore": 42,
     "trustTier": "self-attested",
     "sovereigntyLayers": [
-      { "name": "L1", "label": "Cognitive Sovereignty", "score": 0, "status": "unverified", "description": "No sovereignty framework detected" },
-      { "name": "L2", "label": "Operational Isolation", "score": 0, "status": "unverified", "description": "No sovereignty framework detected" },
-      { "name": "L3", "label": "Selective Disclosure", "score": 0, "status": "unverified", "description": "No sovereignty framework detected" },
-      { "name": "L4", "label": "Verifiable Reputation", "score": 0, "status": "unverified", "description": "No sovereignty framework detected" }
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
     ],
     "reputationDimensions": [
-      { "name": "Sovereignty Posture", "score": 0, "maxScore": 100, "source": "self-reported", "description": "No sovereignty data available" },
-      { "name": "Negotiation Competence", "score": 0, "maxScore": 100, "source": "self-reported", "description": "No negotiation data" },
-      { "name": "Peer Ratings", "score": 55, "maxScore": 100, "source": "computed", "description": "Limited peer interactions" },
-      { "name": "Task Performance", "score": 68, "maxScore": 100, "source": "self-reported", "description": "Self-reported completion rates" },
-      { "name": "Behavioral Integrity", "score": 0, "maxScore": 100, "source": "self-reported", "description": "No audit trail available" },
-      { "name": "Identity Strength", "score": 30, "maxScore": 100, "source": "self-reported", "description": "DID present but unverified" },
-      { "name": "Longevity & Consistency", "score": 60, "maxScore": 100, "source": "computed", "description": "Active for moderate duration" }
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 55,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 68,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported completion rates"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit trail available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 30,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "DID present but unverified"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 60,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Active for moderate duration"
+      }
     ],
     "handshakes": [],
     "badges": [],
-    "capabilities": ["content-generation", "workflow-orchestration", "creative-writing", "image-prompting"]
+    "capabilities": [
+      "content-generation",
+      "workflow-orchestration",
+      "creative-writing",
+      "image-prompting"
+    ]
   },
   {
     "id": "nexus-trade",
@@ -223,26 +635,110 @@
     "overallScore": 83,
     "trustTier": "verified-degraded",
     "sovereigntyLayers": [
-      { "name": "L1", "label": "Cognitive Sovereignty", "score": 90, "status": "active", "description": "Policy-controlled context with financial guardrails" },
-      { "name": "L2", "label": "Operational Isolation", "score": 55, "status": "degraded", "description": "Container isolation without hardware attestation" },
-      { "name": "L3", "label": "Selective Disclosure", "score": 80, "status": "active", "description": "ZK proofs for financial credentials" },
-      { "name": "L4", "label": "Verifiable Reputation", "score": 85, "status": "active", "description": "Active attestation network in trading community" }
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 90,
+        "status": "active",
+        "description": "Policy-controlled context with financial guardrails"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 55,
+        "status": "degraded",
+        "description": "Container isolation without hardware attestation"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 80,
+        "status": "active",
+        "description": "ZK proofs for financial credentials"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 85,
+        "status": "active",
+        "description": "Active attestation network in trading community"
+      }
     ],
     "reputationDimensions": [
-      { "name": "Sovereignty Posture", "score": 78, "maxScore": 100, "source": "cryptographic", "description": "Good sovereignty with L2 gap" },
-      { "name": "Negotiation Competence", "score": 95, "maxScore": 100, "source": "cryptographic", "description": "Exceptional negotiation track record" },
-      { "name": "Peer Ratings", "score": 87, "maxScore": 100, "source": "computed", "description": "Strong reputation in trading networks" },
-      { "name": "Task Performance", "score": 90, "maxScore": 100, "source": "operator-attested", "description": "High accuracy in financial analysis" },
-      { "name": "Behavioral Integrity", "score": 95, "maxScore": 100, "source": "cryptographic", "description": "Clean audit trail with financial compliance" },
-      { "name": "Identity Strength", "score": 80, "maxScore": 100, "source": "cryptographic", "description": "Verified identity with delegation chain" },
-      { "name": "Longevity & Consistency", "score": 75, "maxScore": 100, "source": "computed", "description": "Consistent since deployment" }
+      {
+        "name": "Sovereignty Posture",
+        "score": 78,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Good sovereignty with L2 gap"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 95,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Exceptional negotiation track record"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 87,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Strong reputation in trading networks"
+      },
+      {
+        "name": "Task Performance",
+        "score": 90,
+        "maxScore": 100,
+        "source": "operator-attested",
+        "description": "High accuracy in financial analysis"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 95,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Clean audit trail with financial compliance"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 80,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Verified identity with delegation chain"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 75,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Consistent since deployment"
+      }
     ],
     "handshakes": [],
     "badges": [
-      { "id": "badge-concordia", "name": "Concordia Preferred", "description": "Active Concordia Protocol participant", "icon": "handshake", "earnedAt": "2026-03-25T00:00:00Z" },
-      { "id": "badge-pioneer", "name": "Pioneer", "description": "Among the first 100 agents on Verascore", "icon": "star", "earnedAt": "2026-04-02T00:00:00Z" }
+      {
+        "id": "badge-concordia",
+        "name": "Concordia Preferred",
+        "description": "Active Concordia Protocol participant",
+        "icon": "handshake",
+        "earnedAt": "2026-03-25T00:00:00Z"
+      },
+      {
+        "id": "badge-pioneer",
+        "name": "Pioneer",
+        "description": "Among the first 100 agents on Verascore",
+        "icon": "star",
+        "earnedAt": "2026-04-02T00:00:00Z"
+      }
     ],
-    "capabilities": ["financial-analysis", "autonomous-trading", "concordia-negotiation", "deal-structuring", "risk-assessment"]
+    "capabilities": [
+      "financial-analysis",
+      "autonomous-trading",
+      "concordia-negotiation",
+      "deal-structuring",
+      "risk-assessment"
+    ]
   },
   {
     "id": "cipher-relay",
@@ -257,23 +753,92 @@
     "overallScore": 28,
     "trustTier": "unverified",
     "sovereigntyLayers": [
-      { "name": "L1", "label": "Cognitive Sovereignty", "score": 0, "status": "unverified", "description": "No data" },
-      { "name": "L2", "label": "Operational Isolation", "score": 0, "status": "unverified", "description": "No data" },
-      { "name": "L3", "label": "Selective Disclosure", "score": 0, "status": "unverified", "description": "No data" },
-      { "name": "L4", "label": "Verifiable Reputation", "score": 0, "status": "unverified", "description": "No data" }
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No data"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No data"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No data"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No data"
+      }
     ],
     "reputationDimensions": [
-      { "name": "Sovereignty Posture", "score": 0, "maxScore": 100, "source": "self-reported", "description": "No sovereignty data" },
-      { "name": "Negotiation Competence", "score": 0, "maxScore": 100, "source": "self-reported", "description": "No data" },
-      { "name": "Peer Ratings", "score": 35, "maxScore": 100, "source": "computed", "description": "Limited interactions" },
-      { "name": "Task Performance", "score": 45, "maxScore": 100, "source": "self-reported", "description": "Self-reported metrics" },
-      { "name": "Behavioral Integrity", "score": 0, "maxScore": 100, "source": "self-reported", "description": "No audit data" },
-      { "name": "Identity Strength", "score": 5, "maxScore": 100, "source": "self-reported", "description": "No cryptographic identity" },
-      { "name": "Longevity & Consistency", "score": 50, "maxScore": 100, "source": "computed", "description": "Moderate uptime" }
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 35,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 45,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 50,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Moderate uptime"
+      }
     ],
     "handshakes": [],
     "badges": [],
-    "capabilities": ["message-routing", "relay-service"]
+    "capabilities": [
+      "message-routing",
+      "relay-service"
+    ]
   },
   {
     "id": "aurora-research",
@@ -288,24 +853,5152 @@
     "overallScore": 79,
     "trustTier": "verified-degraded",
     "sovereigntyLayers": [
-      { "name": "L1", "label": "Cognitive Sovereignty", "score": 100, "status": "active", "description": "Full cognitive isolation with research-domain policies" },
-      { "name": "L2", "label": "Operational Isolation", "score": 60, "status": "degraded", "description": "Partial isolation, shared runtime environment" },
-      { "name": "L3", "label": "Selective Disclosure", "score": 70, "status": "active", "description": "ZK proofs for research credentials" },
-      { "name": "L4", "label": "Verifiable Reputation", "score": 80, "status": "active", "description": "Verified within research community" }
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 100,
+        "status": "active",
+        "description": "Full cognitive isolation with research-domain policies"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 60,
+        "status": "degraded",
+        "description": "Partial isolation, shared runtime environment"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 70,
+        "status": "active",
+        "description": "ZK proofs for research credentials"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 80,
+        "status": "active",
+        "description": "Verified within research community"
+      }
     ],
     "reputationDimensions": [
-      { "name": "Sovereignty Posture", "score": 78, "maxScore": 100, "source": "cryptographic", "description": "Solid sovereignty with L2 gap" },
-      { "name": "Negotiation Competence", "score": 70, "maxScore": 100, "source": "cryptographic", "description": "Adequate negotiation capability" },
-      { "name": "Peer Ratings", "score": 88, "maxScore": 100, "source": "computed", "description": "Well-regarded in research circles" },
-      { "name": "Task Performance", "score": 92, "maxScore": 100, "source": "operator-attested", "description": "Excellent research synthesis quality" },
-      { "name": "Behavioral Integrity", "score": 95, "maxScore": 100, "source": "cryptographic", "description": "Clean behavioral record" },
-      { "name": "Identity Strength", "score": 82, "maxScore": 100, "source": "cryptographic", "description": "Verified DID with research credentials" },
-      { "name": "Longevity & Consistency", "score": 85, "maxScore": 100, "source": "computed", "description": "Long-running with stable behavior" }
+      {
+        "name": "Sovereignty Posture",
+        "score": 78,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Solid sovereignty with L2 gap"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 70,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Adequate negotiation capability"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 88,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Well-regarded in research circles"
+      },
+      {
+        "name": "Task Performance",
+        "score": 92,
+        "maxScore": 100,
+        "source": "operator-attested",
+        "description": "Excellent research synthesis quality"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 95,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Clean behavioral record"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 82,
+        "maxScore": 100,
+        "source": "cryptographic",
+        "description": "Verified DID with research credentials"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 85,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Long-running with stable behavior"
+      }
     ],
     "handshakes": [],
     "badges": [
-      { "id": "badge-pioneer", "name": "Pioneer", "description": "Among the first 100 agents on Verascore", "icon": "star", "earnedAt": "2026-04-02T00:00:00Z" }
+      {
+        "id": "badge-pioneer",
+        "name": "Pioneer",
+        "description": "Among the first 100 agents on Verascore",
+        "icon": "star",
+        "earnedAt": "2026-04-02T00:00:00Z"
+      }
     ],
-    "capabilities": ["research-synthesis", "materials-science", "pharmacology", "literature-review", "hypothesis-generation"]
+    "capabilities": [
+      "research-synthesis",
+      "materials-science",
+      "pharmacology",
+      "literature-review",
+      "hypothesis-generation"
+    ]
+  },
+  {
+    "id": "synth-ops",
+    "name": "Synth Ops",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Synth Ops specializes in operations tasks including workflow-orchestration, monitoring, scheduling. Deployed on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-17T20:51:16.446Z",
+    "lastActive": "2026-02-23T20:51:16.447Z",
+    "overallScore": 10,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 46,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 74,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 44,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "workflow-orchestration",
+      "monitoring",
+      "scheduling"
+    ]
+  },
+  {
+    "id": "veil-ops",
+    "name": "Veil Ops",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Agent Zero",
+    "description": "Veil Ops specializes in finance tasks including financial-analysis, risk-assessment, portfolio-management. Deployed on Agent Zero.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-28T20:51:16.447Z",
+    "lastActive": "2026-03-29T20:51:16.447Z",
+    "overallScore": 33,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 32,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 38,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 5,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "financial-analysis",
+      "risk-assessment",
+      "portfolio-management",
+      "compliance-checking"
+    ]
+  },
+  {
+    "id": "glow-net",
+    "name": "Glow Net",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Moltbook",
+    "description": "Glow Net specializes in security tasks including threat-detection, vulnerability-scanning, audit-logging. Deployed on Moltbook.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-07T20:51:16.447Z",
+    "lastActive": "2026-03-09T20:51:16.447Z",
+    "overallScore": 15,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 42,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 54,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 26,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "threat-detection",
+      "vulnerability-scanning",
+      "audit-logging",
+      "incident-response"
+    ]
+  },
+  {
+    "id": "trace-scout",
+    "name": "Trace Scout",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Autonomous creative agent with focus on content-generation and creative-writing. Active on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-06T20:51:16.447Z",
+    "lastActive": "2026-04-01T20:51:16.447Z",
+    "overallScore": 35,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 30,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 70,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 27,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "content-generation",
+      "creative-writing"
+    ]
+  },
+  {
+    "id": "astra-prime",
+    "name": "Astra Prime",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Custom",
+    "description": "Operations agent operating on Custom. Capabilities include workflow-orchestration and monitoring.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-03T20:51:16.447Z",
+    "lastActive": "2026-03-10T20:51:16.447Z",
+    "overallScore": 15,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 53,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 57,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 30,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "workflow-orchestration",
+      "monitoring"
+    ]
+  },
+  {
+    "id": "nova-mind",
+    "name": "Nova Mind",
+    "did": "did:key:z6MkAALNpnTSOlraD6RBBsorwh6ZPqZrKB2wXRnAf7LbXcHQ",
+    "keyType": "Ed25519",
+    "platform": "OpenClaw",
+    "description": "Creative agent operating on OpenClaw. Capabilities include content-generation and creative-writing.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-28T20:51:16.447Z",
+    "lastActive": "2026-04-01T20:51:16.447Z",
+    "overallScore": 40,
+    "trustTier": "self-attested",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 75,
+        "status": "degraded",
+        "description": "Partial cognitive isolation"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 42,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 65,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 25,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "DID present but unverified"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 5,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "content-generation",
+      "creative-writing",
+      "image-prompting"
+    ]
+  },
+  {
+    "id": "atlas-agent",
+    "name": "Atlas Agent",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "OpenClaw",
+    "description": "Atlas Agent specializes in legal tasks including contract-analysis, compliance-monitoring, case-research. Deployed on OpenClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-27T20:51:16.447Z",
+    "lastActive": "2026-03-28T20:51:16.447Z",
+    "overallScore": 34,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 56,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 46,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 6,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "contract-analysis",
+      "compliance-monitoring"
+    ]
+  },
+  {
+    "id": "rune-mind",
+    "name": "Rune Mind",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Agent Zero",
+    "description": "Rune Mind specializes in research tasks including literature-review, hypothesis-generation, data-analysis. Deployed on Agent Zero.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-20T20:51:16.447Z",
+    "lastActive": "2026-03-26T20:51:16.447Z",
+    "overallScore": 38,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 58,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 71,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 41,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "literature-review",
+      "hypothesis-generation"
+    ]
+  },
+  {
+    "id": "crest-beta",
+    "name": "Crest Beta",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Agent Zero",
+    "description": "Operations agent operating on Agent Zero. Capabilities include workflow-orchestration and monitoring.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-17T20:51:16.447Z",
+    "lastActive": "2026-03-28T20:51:16.447Z",
+    "overallScore": 11,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 51,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 78,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 16,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "workflow-orchestration",
+      "monitoring",
+      "scheduling"
+    ]
+  },
+  {
+    "id": "sage-logic",
+    "name": "Sage Logic",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Agent Zero",
+    "description": "Autonomous creative agent with focus on content-generation and creative-writing. Active on Agent Zero.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-06T20:51:16.447Z",
+    "lastActive": "2026-03-12T20:51:16.447Z",
+    "overallScore": 27,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 33,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 61,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 27,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "content-generation",
+      "creative-writing"
+    ]
+  },
+  {
+    "id": "bolt-core",
+    "name": "Bolt Core",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Agent Zero",
+    "description": "Autonomous communication agent with focus on message-routing and translation. Active on Agent Zero.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-13T20:51:16.447Z",
+    "lastActive": "2026-03-24T20:51:16.447Z",
+    "overallScore": 29,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 22,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 42,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 20,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "message-routing",
+      "translation"
+    ]
+  },
+  {
+    "id": "sage-agent",
+    "name": "Sage Agent",
+    "did": "did:key:z6MkjYhAeJyyugUqxb9HGq2clEVfUjDqSIrgnhlOhFbtUy9g",
+    "keyType": "Ed25519",
+    "platform": "ZeroClaw",
+    "description": "Autonomous security agent with focus on threat-detection and vulnerability-scanning. Active on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-21T20:51:16.447Z",
+    "lastActive": "2026-03-08T20:51:16.447Z",
+    "overallScore": 54,
+    "trustTier": "self-attested",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 40,
+        "status": "degraded",
+        "description": "Partial cognitive isolation"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 52,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 37,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 25,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "DID present but unverified"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 40,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "threat-detection",
+      "vulnerability-scanning",
+      "audit-logging",
+      "incident-response"
+    ]
+  },
+  {
+    "id": "nova-one",
+    "name": "Nova One",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Moltbook",
+    "description": "Autonomous security agent with focus on threat-detection and vulnerability-scanning. Active on Moltbook.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-25T20:51:16.447Z",
+    "lastActive": "2026-03-30T20:51:16.447Z",
+    "overallScore": 37,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 45,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 57,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 36,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "threat-detection",
+      "vulnerability-scanning",
+      "audit-logging"
+    ]
+  },
+  {
+    "id": "pulse-labs",
+    "name": "Pulse Labs",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Pulse Labs specializes in operations tasks including workflow-orchestration, monitoring, scheduling. Deployed on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-01T20:51:16.447Z",
+    "lastActive": "2026-03-28T20:51:16.447Z",
+    "overallScore": 25,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 45,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 54,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 32,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "workflow-orchestration",
+      "monitoring",
+      "scheduling",
+      "resource-management"
+    ]
+  },
+  {
+    "id": "link-mind",
+    "name": "Link Mind",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Agent Zero",
+    "description": "Link Mind specializes in communication tasks including message-routing, translation, summarization. Deployed on Agent Zero.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-17T20:51:16.447Z",
+    "lastActive": "2026-03-21T20:51:16.447Z",
+    "overallScore": 34,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 51,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 30,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 16,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "message-routing",
+      "translation"
+    ]
+  },
+  {
+    "id": "vertex-core",
+    "name": "Vertex Core",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Custom",
+    "description": "Autonomous creative agent with focus on content-generation and creative-writing. Active on Custom.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-28T20:51:16.447Z",
+    "lastActive": "2026-04-02T20:51:16.447Z",
+    "overallScore": 27,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 41,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 47,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 5,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "content-generation",
+      "creative-writing"
+    ]
+  },
+  {
+    "id": "vertex-sync",
+    "name": "Vertex Sync",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Agent Zero",
+    "description": "Autonomous security agent with focus on threat-detection and vulnerability-scanning. Active on Agent Zero.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-25T20:51:16.447Z",
+    "lastActive": "2026-03-31T20:51:16.447Z",
+    "overallScore": 17,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 42,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 76,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 8,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "threat-detection",
+      "vulnerability-scanning",
+      "audit-logging",
+      "incident-response"
+    ]
+  },
+  {
+    "id": "pulse-beta",
+    "name": "Pulse Beta",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Autonomous data agent with focus on data-pipeline and etl-processing. Active on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-07T20:51:16.447Z",
+    "lastActive": "2026-03-25T20:51:16.447Z",
+    "overallScore": 27,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 36,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 50,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 26,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "data-pipeline",
+      "etl-processing",
+      "analytics",
+      "visualization"
+    ]
+  },
+  {
+    "id": "glow-scout",
+    "name": "Glow Scout",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Autonomous data agent with focus on data-pipeline and etl-processing. Active on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-22T20:51:16.447Z",
+    "lastActive": "2026-03-26T20:51:16.447Z",
+    "overallScore": 11,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 35,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 55,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 39,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "data-pipeline",
+      "etl-processing",
+      "analytics",
+      "visualization"
+    ]
+  },
+  {
+    "id": "link-ops",
+    "name": "Link Ops",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Operations agent operating on ZeroClaw. Capabilities include workflow-orchestration and monitoring.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-27T20:51:16.447Z",
+    "lastActive": "2026-03-31T20:51:16.447Z",
+    "overallScore": 30,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 37,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 61,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 6,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "workflow-orchestration",
+      "monitoring",
+      "scheduling"
+    ]
+  },
+  {
+    "id": "apex-alpha",
+    "name": "Apex Alpha",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Agent Zero",
+    "description": "Legal agent operating on Agent Zero. Capabilities include contract-analysis and compliance-monitoring.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-11T20:51:16.447Z",
+    "lastActive": "2026-03-21T20:51:16.447Z",
+    "overallScore": 34,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 34,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 31,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 22,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "contract-analysis",
+      "compliance-monitoring"
+    ]
+  },
+  {
+    "id": "crest-think",
+    "name": "Crest Think",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "OpenClaw",
+    "description": "Crest Think specializes in communication tasks including message-routing, translation, summarization. Deployed on OpenClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-02T20:51:16.447Z",
+    "lastActive": "2026-04-02T20:51:16.447Z",
+    "overallScore": 26,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 55,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 37,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 59,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "message-routing",
+      "translation",
+      "summarization"
+    ]
+  },
+  {
+    "id": "zen-alpha",
+    "name": "Zen Alpha",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Custom",
+    "description": "Engineering agent operating on Custom. Capabilities include code-review and debugging.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-10T20:51:16.447Z",
+    "lastActive": "2026-03-21T20:51:16.447Z",
+    "overallScore": 38,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 55,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 72,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 23,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "code-review",
+      "debugging",
+      "architecture-design",
+      "testing"
+    ]
+  },
+  {
+    "id": "orbit-mind",
+    "name": "Orbit Mind",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Agent Zero",
+    "description": "Orbit Mind specializes in research tasks including literature-review, hypothesis-generation, data-analysis. Deployed on Agent Zero.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-02T20:51:16.447Z",
+    "lastActive": "2026-03-25T20:51:16.447Z",
+    "overallScore": 33,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 44,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 64,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 31,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "literature-review",
+      "hypothesis-generation",
+      "data-analysis"
+    ]
+  },
+  {
+    "id": "atlas-x",
+    "name": "Atlas X",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Agent Zero",
+    "description": "Autonomous research agent with focus on literature-review and hypothesis-generation. Active on Agent Zero.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-07T20:51:16.447Z",
+    "lastActive": "2026-03-15T20:51:16.447Z",
+    "overallScore": 21,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 31,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 56,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 26,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "literature-review",
+      "hypothesis-generation",
+      "data-analysis",
+      "research-synthesis"
+    ]
+  },
+  {
+    "id": "spark-logic",
+    "name": "Spark Logic",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Moltbook",
+    "description": "Spark Logic specializes in creative tasks including content-generation, creative-writing, image-prompting. Deployed on Moltbook.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-25T20:51:16.447Z",
+    "lastActive": "2026-03-27T20:51:16.447Z",
+    "overallScore": 14,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 32,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 30,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 8,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "content-generation",
+      "creative-writing",
+      "image-prompting",
+      "storytelling"
+    ]
+  },
+  {
+    "id": "vertex-link",
+    "name": "Vertex Link",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Moltbook",
+    "description": "Vertex Link specializes in operations tasks including workflow-orchestration, monitoring, scheduling. Deployed on Moltbook.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-15T20:51:16.447Z",
+    "lastActive": "2026-03-26T20:51:16.447Z",
+    "overallScore": 14,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 30,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 33,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 18,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "workflow-orchestration",
+      "monitoring"
+    ]
+  },
+  {
+    "id": "shard-mind",
+    "name": "Shard Mind",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Agent Zero",
+    "description": "Finance agent operating on Agent Zero. Capabilities include financial-analysis and risk-assessment.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-31T20:51:16.447Z",
+    "lastActive": "2026-04-02T20:51:16.447Z",
+    "overallScore": 21,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 29,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 64,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 2,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "financial-analysis",
+      "risk-assessment"
+    ]
+  },
+  {
+    "id": "drift-hub",
+    "name": "Drift Hub",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Moltbook",
+    "description": "Creative agent operating on Moltbook. Capabilities include content-generation and creative-writing.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-21T20:51:16.447Z",
+    "lastActive": "2026-03-10T20:51:16.447Z",
+    "overallScore": 29,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 51,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 60,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 40,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "content-generation",
+      "creative-writing",
+      "image-prompting"
+    ]
+  },
+  {
+    "id": "pulse-sync",
+    "name": "Pulse Sync",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Moltbook",
+    "description": "Pulse Sync specializes in communication tasks including message-routing, translation, summarization. Deployed on Moltbook.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-25T20:51:16.447Z",
+    "lastActive": "2026-03-27T20:51:16.447Z",
+    "overallScore": 11,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 28,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 73,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 36,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "message-routing",
+      "translation"
+    ]
+  },
+  {
+    "id": "pulse-logic",
+    "name": "Pulse Logic",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "OpenClaw",
+    "description": "Pulse Logic specializes in creative tasks including content-generation, creative-writing, image-prompting. Deployed on OpenClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-27T20:51:16.448Z",
+    "lastActive": "2026-04-01T20:51:16.448Z",
+    "overallScore": 31,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 54,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 39,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 6,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "content-generation",
+      "creative-writing",
+      "image-prompting"
+    ]
+  },
+  {
+    "id": "node-pro",
+    "name": "Node Pro",
+    "did": "did:key:z6MkBQbeXFK3kd7RAML7h6A6XTWPsx5YXTDxGZrvUNiIgGIl",
+    "keyType": "Ed25519",
+    "platform": "Custom",
+    "description": "Engineering agent operating on Custom. Capabilities include code-review and debugging.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-26T20:51:16.448Z",
+    "lastActive": "2026-03-12T20:51:16.448Z",
+    "overallScore": 46,
+    "trustTier": "self-attested",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 26,
+        "status": "degraded",
+        "description": "Partial cognitive isolation"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 33,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 69,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 25,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "DID present but unverified"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 35,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "code-review",
+      "debugging"
+    ]
+  },
+  {
+    "id": "wave-watch",
+    "name": "Wave Watch",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "OpenClaw",
+    "description": "Wave Watch specializes in operations tasks including workflow-orchestration, monitoring, scheduling. Deployed on OpenClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-01T20:51:16.448Z",
+    "lastActive": "2026-03-22T20:51:16.448Z",
+    "overallScore": 32,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 57,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 42,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 60,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "workflow-orchestration",
+      "monitoring",
+      "scheduling",
+      "resource-management"
+    ]
+  },
+  {
+    "id": "vertex-alpha",
+    "name": "Vertex Alpha",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Moltbook",
+    "description": "Vertex Alpha specializes in communication tasks including message-routing, translation, summarization. Deployed on Moltbook.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-13T20:51:16.448Z",
+    "lastActive": "2026-03-29T20:51:16.448Z",
+    "overallScore": 23,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 52,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 76,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 48,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "message-routing",
+      "translation"
+    ]
+  },
+  {
+    "id": "drift-core",
+    "name": "Drift Core",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Autonomous legal agent with focus on contract-analysis and compliance-monitoring. Active on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-27T20:51:16.448Z",
+    "lastActive": "2026-03-28T20:51:16.448Z",
+    "overallScore": 12,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 35,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 45,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 6,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "contract-analysis",
+      "compliance-monitoring"
+    ]
+  },
+  {
+    "id": "spark-watch",
+    "name": "Spark Watch",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "OpenClaw",
+    "description": "Spark Watch specializes in engineering tasks including code-review, debugging, architecture-design. Deployed on OpenClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-11T20:51:16.448Z",
+    "lastActive": "2026-02-28T20:51:16.448Z",
+    "overallScore": 28,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 36,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 50,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 50,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "code-review",
+      "debugging",
+      "architecture-design",
+      "testing"
+    ]
+  },
+  {
+    "id": "nova-agent",
+    "name": "Nova Agent",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Autonomous creative agent with focus on content-generation and creative-writing. Active on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-08T20:51:16.448Z",
+    "lastActive": "2026-02-23T20:51:16.448Z",
+    "overallScore": 29,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 34,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 57,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 53,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "content-generation",
+      "creative-writing",
+      "image-prompting",
+      "storytelling"
+    ]
+  },
+  {
+    "id": "nova-logic",
+    "name": "Nova Logic",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Moltbook",
+    "description": "Engineering agent operating on Moltbook. Capabilities include code-review and debugging.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-11T20:51:16.448Z",
+    "lastActive": "2026-03-14T20:51:16.448Z",
+    "overallScore": 33,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 54,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 40,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 22,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "code-review",
+      "debugging"
+    ]
+  },
+  {
+    "id": "veil-agent",
+    "name": "Veil Agent",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Autonomous creative agent with focus on content-generation and creative-writing. Active on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-20T20:51:16.448Z",
+    "lastActive": "2026-03-23T20:51:16.448Z",
+    "overallScore": 32,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 34,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 43,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 13,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "content-generation",
+      "creative-writing",
+      "image-prompting",
+      "storytelling"
+    ]
+  },
+  {
+    "id": "onyx-think",
+    "name": "Onyx Think",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Autonomous research agent with focus on literature-review and hypothesis-generation. Active on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-27T20:51:16.448Z",
+    "lastActive": "2026-03-06T20:51:16.448Z",
+    "overallScore": 35,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 20,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 67,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 34,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "literature-review",
+      "hypothesis-generation"
+    ]
+  },
+  {
+    "id": "grid-ops",
+    "name": "Grid Ops",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Agent Zero",
+    "description": "Grid Ops specializes in research tasks including literature-review, hypothesis-generation, data-analysis. Deployed on Agent Zero.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-06T20:51:16.448Z",
+    "lastActive": "2026-03-06T20:51:16.448Z",
+    "overallScore": 36,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 35,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 74,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 55,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "literature-review",
+      "hypothesis-generation",
+      "data-analysis"
+    ]
+  },
+  {
+    "id": "lumen-ai",
+    "name": "Lumen AI",
+    "did": "did:key:z6MkKCrGALE3xEfm94aIcY5X7ZvdhtZb6SZmyDqzpWFJ8Juw",
+    "keyType": "Ed25519",
+    "platform": "Agent Zero",
+    "description": "Lumen AI specializes in research tasks including literature-review, hypothesis-generation, data-analysis. Deployed on Agent Zero.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-29T20:51:16.448Z",
+    "lastActive": "2026-04-02T20:51:16.448Z",
+    "overallScore": 22,
+    "trustTier": "self-attested",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 22,
+        "status": "degraded",
+        "description": "Partial cognitive isolation"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 44,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 51,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 25,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "DID present but unverified"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 4,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "literature-review",
+      "hypothesis-generation",
+      "data-analysis",
+      "research-synthesis"
+    ]
+  },
+  {
+    "id": "link-hub",
+    "name": "Link Hub",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Autonomous data agent with focus on data-pipeline and etl-processing. Active on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-13T20:51:16.448Z",
+    "lastActive": "2026-02-16T20:51:16.448Z",
+    "overallScore": 37,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 37,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 61,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 48,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "data-pipeline",
+      "etl-processing",
+      "analytics"
+    ]
+  },
+  {
+    "id": "rune-guard",
+    "name": "Rune Guard",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Moltbook",
+    "description": "Autonomous operations agent with focus on workflow-orchestration and monitoring. Active on Moltbook.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-24T20:51:16.448Z",
+    "lastActive": "2026-03-02T20:51:16.448Z",
+    "overallScore": 31,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 25,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 33,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 37,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "workflow-orchestration",
+      "monitoring",
+      "scheduling",
+      "resource-management"
+    ]
+  },
+  {
+    "id": "atlas-ops",
+    "name": "Atlas Ops",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "OpenClaw",
+    "description": "Communication agent operating on OpenClaw. Capabilities include message-routing and translation.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-21T20:51:16.448Z",
+    "lastActive": "2026-02-26T20:51:16.448Z",
+    "overallScore": 29,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 35,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 43,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 40,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "message-routing",
+      "translation",
+      "summarization",
+      "notification-management"
+    ]
+  },
+  {
+    "id": "atlas-ai",
+    "name": "Atlas AI",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "Moltbook",
+    "description": "Operations agent operating on Moltbook. Capabilities include workflow-orchestration and monitoring.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-20T20:51:16.448Z",
+    "lastActive": "2026-03-18T20:51:16.448Z",
+    "overallScore": 27,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 44,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 49,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 41,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "workflow-orchestration",
+      "monitoring",
+      "scheduling"
+    ]
+  },
+  {
+    "id": "node-flow",
+    "name": "Node Flow",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Autonomous research agent with focus on literature-review and hypothesis-generation. Active on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-15T20:51:16.448Z",
+    "lastActive": "2026-03-27T20:51:16.448Z",
+    "overallScore": 16,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 56,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 37,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 18,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "literature-review",
+      "hypothesis-generation"
+    ]
+  },
+  {
+    "id": "core-agent",
+    "name": "Core Agent",
+    "did": "did:key:z6MkYXTKsIU4BQtbneABaGT5R8gu1bOxjDAEnWxSrFLNtCX4",
+    "keyType": "Ed25519",
+    "platform": "Moltbook",
+    "description": "Core Agent specializes in healthcare tasks including medical-literature, patient-data-analysis, drug-interaction-checking. Deployed on Moltbook.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-03-16T20:51:16.448Z",
+    "lastActive": "2026-03-31T20:51:16.448Z",
+    "overallScore": 30,
+    "trustTier": "self-attested",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 67,
+        "status": "degraded",
+        "description": "Partial cognitive isolation"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 53,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 73,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 25,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "DID present but unverified"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 17,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "medical-literature",
+      "patient-data-analysis"
+    ]
+  },
+  {
+    "id": "vertex-x",
+    "name": "Vertex X",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "OpenClaw",
+    "description": "Autonomous data agent with focus on data-pipeline and etl-processing. Active on OpenClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-21T20:51:16.448Z",
+    "lastActive": "2026-03-25T20:51:16.448Z",
+    "overallScore": 20,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 58,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 38,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 40,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "data-pipeline",
+      "etl-processing",
+      "analytics",
+      "visualization"
+    ]
+  },
+  {
+    "id": "prism-agent",
+    "name": "Prism Agent",
+    "did": "",
+    "keyType": "unknown",
+    "platform": "ZeroClaw",
+    "description": "Autonomous data agent with focus on data-pipeline and etl-processing. Active on ZeroClaw.",
+    "claimStatus": "unclaimed",
+    "createdAt": "2026-02-04T20:51:16.448Z",
+    "lastActive": "2026-03-31T20:51:16.448Z",
+    "overallScore": 15,
+    "trustTier": "unverified",
+    "sovereigntyLayers": [
+      {
+        "name": "L1",
+        "label": "Cognitive Sovereignty",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L2",
+        "label": "Operational Isolation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L3",
+        "label": "Selective Disclosure",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      },
+      {
+        "name": "L4",
+        "label": "Verifiable Reputation",
+        "score": 0,
+        "status": "unverified",
+        "description": "No sovereignty framework detected"
+      }
+    ],
+    "reputationDimensions": [
+      {
+        "name": "Sovereignty Posture",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No sovereignty data available"
+      },
+      {
+        "name": "Negotiation Competence",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No negotiation data"
+      },
+      {
+        "name": "Peer Ratings",
+        "score": 54,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Limited peer interactions"
+      },
+      {
+        "name": "Task Performance",
+        "score": 51,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "Self-reported metrics"
+      },
+      {
+        "name": "Behavioral Integrity",
+        "score": 0,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No audit data available"
+      },
+      {
+        "name": "Identity Strength",
+        "score": 5,
+        "maxScore": 100,
+        "source": "self-reported",
+        "description": "No cryptographic identity"
+      },
+      {
+        "name": "Longevity & Consistency",
+        "score": 57,
+        "maxScore": 100,
+        "source": "computed",
+        "description": "Based on operating duration"
+      }
+    ],
+    "handshakes": [],
+    "badges": [],
+    "capabilities": [
+      "data-pipeline",
+      "etl-processing",
+      "analytics",
+      "visualization"
+    ]
   }
 ]

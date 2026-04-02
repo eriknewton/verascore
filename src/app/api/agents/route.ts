@@ -4,7 +4,7 @@ import { getAgents } from "@/lib/data";
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
 
-  const result = getAgents({
+  const result = await getAgents({
     page: searchParams.get("page") ? parseInt(searchParams.get("page")!) : 1,
     pageSize: searchParams.get("pageSize")
       ? parseInt(searchParams.get("pageSize")!)

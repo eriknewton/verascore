@@ -12,7 +12,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const attestation = getAttestation(id);
+  const attestation = await getAttestation(id);
   if (!attestation) return { title: "Attestation Not Found" };
   return {
     title: `Handshake Verification — ${attestation.initiatorName} & ${attestation.responderName}`,
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function VerifyPage({ params }: PageProps) {
   const { id } = await params;
-  const attestation = getAttestation(id);
+  const attestation = await getAttestation(id);
 
   if (!attestation) {
     notFound();

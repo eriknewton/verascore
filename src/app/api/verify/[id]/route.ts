@@ -5,7 +5,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const attestation = getAttestation(id);
+  const attestation = await getAttestation(id);
 
   if (!attestation) {
     return Response.json({ error: "Attestation not found" }, { status: 404 });

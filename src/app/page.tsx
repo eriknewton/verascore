@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { getStats } from "@/lib/data";
 
-export default function Home() {
-  const stats = getStats();
+export default async function Home() {
+  const stats = await getStats();
 
   return (
     <div>

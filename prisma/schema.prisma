@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ───────────────────────────────────────────────────────
+
+enum SovereigntyLevel {
+  active
+  degraded
+  inactive
+  unverified
+}
+
+enum TrustTier {
+  verified_sovereign  @map("verified-sovereign")
+  verified_degraded   @map("verified-degraded")
+  self_attested       @map("self-attested")
+  unverified
+}
+
+enum ClaimStatus {
+  claimed
+  unclaimed
+}
+
+enum SignalSource {
+  cryptographic
+  operator_attested @map("operator-attested")
+  self_reported     @map("self-reported")
+  computed
+}
+
+// ─── Core Tables ─────────────────────────────────────────────────
+
+model Agent {
+  id           String      @id
+  name         String
+  did          String      @default("")
+  keyType      String      @default("unknown")
+  platform     String
+  description  String
+  claimStatus  ClaimStatus @default(unclaimed)
+  createdAt    DateTime    @default(now())
+  lastActive   DateTime    @default(now())
+  overallScore Int         @default(0)
+  trustTier    TrustTier   @default(unverified)
+  capabilities String[]
+  avatarUrl    String?
+
+  sovereigntyLayers    SovereigntyLayer[]
+  reputationDimensions ReputationDimension[]
+  badges               Badge[]
+
+  // Handshake relations (as either party)
+  initiatedAttestations Attestation[] @relation("Initiator")
+  receivedAttestations  Attestation[] @relation("Responder")
+
+  @@index([trustTier])
+  @@index([overallScore])
+  @@index([platform])
+  @@index([claimStatus])
+}
+
+model SovereigntyLayer {
+  id          String           @id @default(cuid())
+  agentId     String
+  name        String           // L1, L2, L3, L4
+  label       String
+  score       Int              @default(0)
+  status      SovereigntyLevel @default(unverified)
+  description String
+
+  agent Agent @relation(fields: [agentId], references: [id], onDelete: Cascade)
+
+  @@unique([agentId, name])
+}
+
+model ReputationDimension {
+  id          String       @id @default(cuid())
+  agentId     String
+  name        String
+  score       Int          @default(0)
+  maxScore    Int          @default(100)
+  source      SignalSource
+  description String
+
+  agent Agent @relation(fields: [agentId], references: [id], onDelete: Cascade)
+
+  @@unique([agentId, name])
+}
+
+model Badge {
+  id          String   @id @default(cuid())
+  agentId     String
+  name        String
+  description String
+  icon        String
+  earnedAt    DateTime @default(now())
+
+  agent Agent @relation(fields: [agentId], references: [id], onDelete: Cascade)
+
+  @@unique([agentId, name])
+}
+
+model Attestation {
+  id              String    @id
+  initiatorId     String
+  responderId     String
+  timestamp       DateTime
+  expiresAt       DateTime
+  trustTier       TrustTier
+  verified        Boolean   @default(false)
+  signature       String
+  protocol        String
+  protocolVersion String
+
+  // Sovereignty postures at time of handshake (stored as JSON)
+  initiatorPosture Json
+  responderPosture Json
+
+  initiator Agent @relation("Initiator", fields: [initiatorId], references: [id])
+  responder Agent @relation("Responder", fields: [responderId], references: [id])
+
+  @@index([initiatorId])
+  @@index([responderId])
+  @@index([verified])
+}

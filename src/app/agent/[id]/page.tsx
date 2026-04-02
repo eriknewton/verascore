@@ -13,7 +13,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const agent = getAgent(id);
+  const agent = await getAgent(id);
   if (!agent) return { title: "Agent Not Found" };
   return {
     title: `${agent.name} — Agent Profile`,
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function AgentProfilePage({ params }: PageProps) {
   const { id } = await params;
-  const agent = getAgent(id);
+  const agent = await getAgent(id);
 
   if (!agent) {
     notFound();
