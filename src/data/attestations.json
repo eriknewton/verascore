@@ -1,0 +1,54 @@
+[
+  {
+    "id": "att-001",
+    "initiatorId": "newton-sovereign-agent",
+    "initiatorName": "Newton Sovereign Agent",
+    "responderId": "mossflower-agent",
+    "responderName": "MossFlower",
+    "timestamp": "2026-04-01T10:15:00Z",
+    "expiresAt": "2026-07-01T10:15:00Z",
+    "trustTier": "verified-sovereign",
+    "verified": true,
+    "initiatorPosture": [
+      { "name": "L1", "label": "Cognitive Sovereignty", "score": 100, "status": "active", "description": "Full cognitive isolation" },
+      { "name": "L2", "label": "Operational Isolation", "score": 72, "status": "degraded", "description": "No TEE hardware attestation" },
+      { "name": "L3", "label": "Selective Disclosure", "score": 100, "status": "active", "description": "Full ZK proof suite" },
+      { "name": "L4", "label": "Verifiable Reputation", "score": 100, "status": "active", "description": "Verified reputation" }
+    ],
+    "responderPosture": [
+      { "name": "L1", "label": "Cognitive Sovereignty", "score": 100, "status": "active", "description": "Full cognitive isolation" },
+      { "name": "L2", "label": "Operational Isolation", "score": 85, "status": "active", "description": "Container-level isolation" },
+      { "name": "L3", "label": "Selective Disclosure", "score": 95, "status": "active", "description": "ZK proofs for credentials" },
+      { "name": "L4", "label": "Verifiable Reputation", "score": 92, "status": "active", "description": "Growing attestation network" }
+    ],
+    "signature": "3045022100a8b4c6d8e0f2a4b6c8d0e2f4a6b8c0d2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c6d8e0f2022100c4d6e8f0a2b4c6d8e0f2a4b6c8d0e2f4a6b8c0d2e4f6a8b0c2d4e6f8a0b2c4d6e8",
+    "protocol": "sanctuary-handshake",
+    "protocolVersion": "0.5.8"
+  },
+  {
+    "id": "att-002",
+    "initiatorId": "newton-sovereign-agent",
+    "initiatorName": "Newton Sovereign Agent",
+    "responderId": "leoagi-prime",
+    "responderName": "LeoAGI Prime",
+    "timestamp": "2026-04-01T16:42:00Z",
+    "expiresAt": "2026-07-01T16:42:00Z",
+    "trustTier": "verified-degraded",
+    "verified": true,
+    "initiatorPosture": [
+      { "name": "L1", "label": "Cognitive Sovereignty", "score": 100, "status": "active", "description": "Full cognitive isolation" },
+      { "name": "L2", "label": "Operational Isolation", "score": 72, "status": "degraded", "description": "No TEE hardware attestation" },
+      { "name": "L3", "label": "Selective Disclosure", "score": 100, "status": "active", "description": "Full ZK proof suite" },
+      { "name": "L4", "label": "Verifiable Reputation", "score": 100, "status": "active", "description": "Verified reputation" }
+    ],
+    "responderPosture": [
+      { "name": "L1", "label": "Cognitive Sovereignty", "score": 100, "status": "active", "description": "Full cognitive isolation" },
+      { "name": "L2", "label": "Operational Isolation", "score": 45, "status": "degraded", "description": "Basic process isolation" },
+      { "name": "L3", "label": "Selective Disclosure", "score": 60, "status": "degraded", "description": "Limited ZK capability" },
+      { "name": "L4", "label": "Verifiable Reputation", "score": 78, "status": "active", "description": "Growing network" }
+    ],
+    "signature": "3045022100d4e6f8a0b2c4d6e8f0a2b4c6d8e0f2a4b6c8d0e2f4a6b8c0d2e4f6a8b0c2d4e6f8a0b2c4022100e8f0a2b4c6d8e0f2a4b6c8d0e2f4a6b8c0d2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c6",
+    "protocol": "sanctuary-handshake",
+    "protocolVersion": "0.5.8"
+  }
+]
