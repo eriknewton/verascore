@@ -1,30 +1,36 @@
-import { getAgent } from "@/lib/data";
-import { cleanupExpiredChallenges, storeChallenge } from "@/lib/challenge-store";
 import { randomBytes } from "crypto";
+import { getAgent } from "@/lib/data";
+import {
+  cleanupExpiredChallenges,
+  storeChallenge,
+} from "@/lib/challenge-store";
 
-const CHALLENGE_ID_SIZE = 32;
-const NONCE_SIZE = 32;
+// Constants
+const CHALLENGE_ID_SIZE = 32; // bytes
+const NONCE_SIZE = 32; // bytes
 
 function generateRandomHex(bytes: number): string {
   return randomBytes(bytes).toString("hex");
 }
 
-export async function POST(request: Request) {
-  const body = await request.json() as Record<string, unknown>;
-  const { agentId } = body;
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const agentId = searchParams.get("agentId");
 
   if (!agentId) {
     return Response.json(
-      { error: "Missing required field: agentId" },
+      { error: "Missing required query param: agentId" },
       { status: 400 }
     );
   }
 
-  const agent = await getAgent(agentId as string);
+  // Look up agent
+  const agent = await getAgent(agentId);
   if (!agent) {
     return Response.json({ error: "Agent not found" }, { status: 404 });
   }
 
+  // Check if already claimed
   if (agent.claimStatus === "claimed") {
     return Response.json(
       { error: "Agent already claimed" },
@@ -35,19 +41,16 @@ export async function POST(request: Request) {
   // Clean up expired challenges
   cleanupExpiredChallenges();
 
-  // Generate a new challenge
+  // Generate new challenge
   const challengeId = generateRandomHex(CHALLENGE_ID_SIZE);
   const nonce = generateRandomHex(NONCE_SIZE);
 
-  storeChallenge(challengeId, nonce, agentId as string);
+  storeChallenge(challengeId, nonce, agentId);
 
   return Response.json({
-    success: true,
     challengeId,
     nonce,
     agentId,
-    expiresIn: 300,
-    message:
-      "Challenge generated. Sign the nonce with your Ed25519 private key and submit it to /api/claim/verify",
+    expiresIn: 300, // 5 minutes in seconds
   });
 }

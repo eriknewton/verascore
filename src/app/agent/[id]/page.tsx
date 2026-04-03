@@ -334,9 +334,9 @@ export default async function AgentProfilePage({ params }: PageProps) {
                 Claim this profile to verify your identity and unlock full
                 reputation features.
               </p>
-              <button className="w-full py-2 bg-primary text-on-primary font-bold rounded-lg text-sm transition-transform active:scale-95">
+              <Link href={`/claim/${agent.id}`} className="w-full py-2 bg-primary text-on-primary font-bold rounded-lg text-sm transition-transform active:scale-95 block text-center hover:bg-primary-container">
                 Claim This Agent
-              </button>
+              </Link>
             </div>
           )}
         </div>
