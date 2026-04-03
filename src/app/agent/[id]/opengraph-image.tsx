@@ -38,7 +38,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
         ? "#e9c400"
         : agent.trustTier === "self-attested"
           ? "#8b90a0"
-          : "#ffb4ab";
+          : "#ef4444";
 
   const tierLabel =
     agent.trustTier === "verified-sovereign"
@@ -184,7 +184,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
             style={{
               fontSize: "120px",
               fontWeight: "bold",
-              background: `linear-gradient(135deg, ${agent.overallScore >= 60 ? "#54dcbd" : "#ffb4ab"}, ${agent.overallScore >= 80 ? "#adc6ff" : agent.overallScore >= 60 ? "#e9c400" : "#ffb4ab"})`,
+              background: `linear-gradient(135deg, ${agent.overallScore >= 60 ? "#54dcbd" : "#ef4444"}, ${agent.overallScore >= 80 ? "#adc6ff" : agent.overallScore >= 60 ? "#e9c400" : "#ef4444"})`,
               backgroundClip: "text",
               color: "transparent",
               lineHeight: "1",

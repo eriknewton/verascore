@@ -40,8 +40,8 @@
   --color-on-tertiary: #3a3000;
 
   /* Status colors */
-  --color-error: #ffb4ab;
-  --color-error-container: #93000a;
+  --color-error: #ef4444;
+  --color-error-dim: #dc2626;
   --color-green: #54dcbd;
   --color-green-dim: #02af92;
 
@@ -50,10 +50,10 @@
   --color-accent-hover: #4a8eff;
   --color-teal: #54dcbd;
   --color-teal-dim: #02af92;
-  --color-amber: #e9c400;
-  --color-amber-dim: #c9a900;
-  --color-red: #ffb4ab;
-  --color-red-dim: #93000a;
+  --color-amber: #f59e0b;
+  --color-amber-dim: #d97706;
+  --color-red: #ef4444;
+  --color-red-dim: #dc2626;
   --color-surface-hover: #242a36;
 
   /* Typography */
