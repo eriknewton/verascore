@@ -62,9 +62,14 @@ export function publicKeyFromDid(did: string): Buffer | null {
   if (!did.startsWith("did:key:z")) return null;
 
   try {
-    // Decode the base58btc portion (after "did:key:z")
     const encoded = did.slice("did:key:z".length);
-    const decoded = base58btcDecode(encoded);
+
+    // Detect encoding: base58btc has no hyphens or underscores.
+    // Some implementations (e.g. Sanctuary) use base64url after the "z" prefix.
+    const isBase64url = encoded.includes("-") || encoded.includes("_");
+    const decoded = isBase64url
+      ? base64urlToBuffer(encoded)
+      : Buffer.from(base58btcDecode(encoded));
 
     // Ed25519 multicodec prefix is 0xed 0x01
     if (decoded.length < 34 || decoded[0] !== 0xed || decoded[1] !== 0x01) {

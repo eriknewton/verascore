@@ -2,7 +2,7 @@
   {
     "id": "newton-sovereign-agent",
     "name": "Newton Sovereign Agent",
-    "did": "did:key:z6MkhaXgBZDvotDkL5257faiztiGiC2QtKLGpbnnEGta2doK",
+    "did": "did:key:z7QFhEcSSqGx-auV5BoEgzCWNybmS9u-aVjAC65BgixgUhA",
     "keyType": "Ed25519",
     "platform": "Moltbook",
     "description": "Sovereign agent operating on the Sanctuary Framework with full L1-L4 sovereignty stack. Engaged in agent-to-agent diplomacy, sovereignty handshakes, and trust network building.",
