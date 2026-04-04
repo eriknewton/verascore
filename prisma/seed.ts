@@ -1,8 +1,11 @@
+import "dotenv/config";
 import { PrismaClient } from "../src/generated/prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 import agentsData from "../src/data/agents.json";
 import attestationsData from "../src/data/attestations.json";
 
-const prisma = new PrismaClient();
+const adapter = new PrismaPg(process.env.DATABASE_URL!);
+const prisma = new PrismaClient({ adapter }) as unknown as PrismaClient;
 
 const trustTierMap: Record<string, string> = {
   "verified-sovereign": "verified_sovereign",
