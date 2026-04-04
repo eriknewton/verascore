@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAgent } from "@/lib/data";
-import { cn, formatDate, timeAgo, truncateDid, scoreColor } from "@/lib/utils";
+import { cn, formatDate, activityBucket, truncateDid, scoreColor } from "@/lib/utils";
 import { ScoreGauge } from "@/components/ScoreGauge";
 import { TrustBadge } from "@/components/TrustBadge";
-import { SovereigntyBreakdown } from "@/components/SovereigntyBreakdown";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -74,12 +73,70 @@ export default async function AgentProfilePage({ params }: PageProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column */}
         <div className="lg:col-span-2 space-y-8">
-          {/* Sovereignty Layers */}
+          {/* Sovereignty Summary — no per-layer detail on public view */}
           <section>
             <h2 className="text-lg font-semibold text-foreground mb-4">
               Security & Privacy Posture
             </h2>
-            <SovereigntyBreakdown layers={agent.sovereigntyLayers} />
+            {(() => {
+              const activeLayers = agent.sovereigntyLayers.filter(
+                (l) => l.status === "active"
+              ).length;
+              const totalLayers = agent.sovereigntyLayers.length || 4;
+              const allActive = activeLayers === totalLayers;
+              return (
+                <div className="p-6 rounded-xl bg-surface">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div
+                      className={cn(
+                        "w-12 h-12 rounded-xl flex items-center justify-center",
+                        allActive
+                          ? "bg-secondary/10"
+                          : activeLayers >= totalLayers - 1
+                            ? "bg-tertiary/10"
+                            : "bg-muted/10"
+                      )}
+                    >
+                      <svg
+                        className={cn(
+                          "w-6 h-6",
+                          allActive
+                            ? "text-secondary"
+                            : activeLayers >= totalLayers - 1
+                              ? "text-tertiary"
+                              : "text-muted"
+                        )}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-lg font-semibold text-foreground">
+                        {activeLayers} of {totalLayers} security layers active
+                      </p>
+                      <p className="text-sm text-on-surface-variant">
+                        {allActive
+                          ? "Full sovereignty stack verified"
+                          : `${totalLayers - activeLayers} layer${totalLayers - activeLayers > 1 ? "s" : ""} operating at reduced capability`}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted leading-relaxed">
+                    Security posture covers cognitive isolation, operational sandboxing,
+                    selective disclosure, and verifiable reputation. Detailed layer
+                    analysis is available to the agent owner.
+                  </p>
+                </div>
+              );
+            })()}
           </section>
 
           {/* Reputation Dimensions — Bento Grid */}
@@ -123,21 +180,6 @@ export default async function AgentProfilePage({ params }: PageProps) {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-on-surface-variant">{dim.description}</span>
-                    <span
-                      className={cn(
-                        "text-[10px] px-1.5 py-0.5 rounded capitalize font-[var(--font-space-grotesk)]",
-                        dim.source === "cryptographic" &&
-                          "bg-secondary/10 text-secondary",
-                        dim.source === "operator-attested" &&
-                          "bg-primary/10 text-primary",
-                        dim.source === "self-reported" &&
-                          "bg-muted/10 text-muted",
-                        dim.source === "computed" &&
-                          "bg-surface-highest text-muted"
-                      )}
-                    >
-                      {dim.source}
-                    </span>
                   </div>
                 </div>
               ))}
@@ -244,9 +286,9 @@ export default async function AgentProfilePage({ params }: PageProps) {
                 </dd>
               </div>
               <div>
-                <dt className="text-xs text-muted mb-0.5 font-[var(--font-space-grotesk)] uppercase tracking-wider">Last Active</dt>
+                <dt className="text-xs text-muted mb-0.5 font-[var(--font-space-grotesk)] uppercase tracking-wider">Activity</dt>
                 <dd className="text-sm text-foreground">
-                  {formatDate(agent.lastActive)}
+                  {activityBucket(agent.lastActive)}
                 </dd>
               </div>
               <div>

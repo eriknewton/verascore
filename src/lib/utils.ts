@@ -93,6 +93,17 @@ export function scoreColor(score: number): string {
   return "text-error";
 }
 
+export function activityBucket(dateString: string): string {
+  const now = new Date();
+  const date = new Date(dateString);
+  const hours = (now.getTime() - date.getTime()) / (1000 * 60 * 60);
+
+  if (hours < 24) return "Active today";
+  if (hours < 24 * 7) return "Active this week";
+  if (hours < 24 * 30) return "Active this month";
+  return "Inactive";
+}
+
 export function truncateDid(did: string): string {
   if (!did) return "No DID";
   if (did.length <= 30) return did;

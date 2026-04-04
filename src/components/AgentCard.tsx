@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { AgentProfile } from "@/lib/types";
-import { cn, scoreColor, timeAgo, truncateDid } from "@/lib/utils";
+import { cn, activityBucket, truncateDid } from "@/lib/utils";
 import { TrustBadge } from "./TrustBadge";
 import { ScoreGauge } from "./ScoreGauge";
 
@@ -9,9 +9,10 @@ interface AgentCardProps {
 }
 
 export function AgentCard({ agent }: AgentCardProps) {
-  const sovereigntyAvg = Math.round(
-    agent.sovereigntyLayers.reduce((s, l) => s + l.score, 0) / 4
-  );
+  const activeLayers = agent.sovereigntyLayers.filter(
+    (l) => l.status === "active"
+  ).length;
+  const totalLayers = agent.sovereigntyLayers.length || 4;
 
   return (
     <Link
@@ -40,28 +41,23 @@ export function AgentCard({ agent }: AgentCardProps) {
       </p>
 
       <div className="flex items-center gap-3 mb-3">
-        {agent.sovereigntyLayers.map((layer) => (
-          <div key={layer.name} className="flex items-center gap-1">
-            <span className="text-[10px] font-mono text-muted">{layer.name}</span>
-            <div
-              className={cn(
-                "w-2 h-2 rounded-full",
-                layer.status === "active" && "bg-secondary",
-                layer.status === "degraded" && "bg-tertiary",
-                layer.status === "inactive" && "bg-error",
-                layer.status === "unverified" && "bg-muted/30"
-              )}
-            />
-          </div>
-        ))}
-        <span className={cn("text-xs font-mono ml-auto", scoreColor(sovereigntyAvg))}>
-          {sovereigntyAvg}/100
+        <span
+          className={cn(
+            "text-xs font-[var(--font-space-grotesk)] tracking-wide",
+            activeLayers === totalLayers
+              ? "text-secondary"
+              : activeLayers >= totalLayers - 1
+                ? "text-tertiary"
+                : "text-muted"
+          )}
+        >
+          {activeLayers}/{totalLayers} security layers active
         </span>
       </div>
 
       <div className="flex items-center justify-between">
         <TrustBadge tier={agent.trustTier} size="sm" />
-        <span className="text-xs text-muted">{timeAgo(agent.lastActive)}</span>
+        <span className="text-xs text-muted">{activityBucket(agent.lastActive)}</span>
       </div>
     </Link>
   );
