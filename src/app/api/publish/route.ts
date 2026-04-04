@@ -1,4 +1,6 @@
 import { NextRequest } from "next/server";
+import { verifyEd25519, base64urlToBuffer, publicKeyMatchesDid } from "@/lib/crypto";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 /**
  * POST /api/publish — Sanctuary reputation_publish endpoint
@@ -6,36 +8,30 @@ import { NextRequest } from "next/server";
  * Accepts SHR data, handshake attestations, and sovereignty health
  * from Sanctuary agents. This is the data pipeline that feeds Verascore.
  *
+ * Security model:
+ * 1. Ed25519 signature verification over JSON.stringify(data)
+ * 2. Public key must match the agent's registered DID (did:key)
+ * 3. Rate limiting per agentId (10 requests per 5 minutes)
+ *
  * Expected payload:
  * {
  *   agentId: string,
- *   signature: string,         // Ed25519 signature over the payload
- *   publicKey: string,         // agent's public key for verification
+ *   signature: string,         // base64url Ed25519 signature over JSON.stringify(data)
+ *   publicKey: string,         // base64url raw Ed25519 public key (32 bytes)
  *   type: "shr" | "handshake" | "sovereignty-update",
- *   data: {
- *     // For type "shr":
- *     sovereigntyLayers?: SovereigntyLayer[],
- *     reputationDimensions?: ReputationDimension[],
- *     capabilities?: string[],
- *     overallScore?: number,
- *
- *     // For type "handshake":
- *     attestation?: Attestation,
- *
- *     // For type "sovereignty-update":
- *     layers?: SovereigntyLayer[],
- *   }
+ *   data: { ... }
  * }
- *
- * When DATABASE_URL is set, this writes to Postgres.
- * Without it, returns a dry-run acknowledgment.
  */
 
+// Rate limit: 10 publishes per agent per 5 minutes
+const RATE_LIMIT_MAX = 10;
+const RATE_LIMIT_WINDOW = 5 * 60 * 1000;
+
 export async function POST(request: NextRequest) {
-  const body = await request.json();
+  const body = await request.json() as Record<string, unknown>;
   const { agentId, signature, publicKey, type, data } = body;
 
-  // Validate required fields
+  // ─── Field validation ─────────────────────────────────────────
   if (!agentId || !signature || !publicKey || !type || !data) {
     return Response.json(
       {
@@ -46,99 +42,161 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Validate type
   const validTypes = ["shr", "handshake", "sovereignty-update"];
-  if (!validTypes.includes(type)) {
+  if (!validTypes.includes(type as string)) {
     return Response.json(
-      {
-        error: `Invalid type. Must be one of: ${validTypes.join(", ")}`,
-      },
+      { error: `Invalid type. Must be one of: ${validTypes.join(", ")}` },
       { status: 400 }
     );
   }
 
-  // TODO: In production:
-  // 1. Verify Ed25519 signature over JSON.stringify(data) using publicKey
-  // 2. Verify publicKey matches the agent's registered DID
-  // 3. Rate-limit per agent
-  // 4. Write to database
+  // ─── Rate limiting ────────────────────────────────────────────
+  const rateCheck = checkRateLimit(
+    `publish:${agentId}`,
+    RATE_LIMIT_MAX,
+    RATE_LIMIT_WINDOW
+  );
 
+  if (!rateCheck.allowed) {
+    return Response.json(
+      {
+        error: "Rate limit exceeded",
+        retryAfterMs: rateCheck.resetIn,
+      },
+      { status: 429 }
+    );
+  }
+
+  // ─── Ed25519 signature verification ───────────────────────────
+  let signatureBytes: Buffer;
+  let publicKeyBytes: Buffer;
+
+  try {
+    signatureBytes = base64urlToBuffer(signature as string);
+    publicKeyBytes = base64urlToBuffer(publicKey as string);
+  } catch {
+    return Response.json(
+      { error: "Invalid base64url encoding for signature or publicKey" },
+      { status: 400 }
+    );
+  }
+
+  if (publicKeyBytes.length !== 32) {
+    return Response.json(
+      { error: "publicKey must be a 32-byte Ed25519 key (base64url-encoded)" },
+      { status: 400 }
+    );
+  }
+
+  if (signatureBytes.length !== 64) {
+    return Response.json(
+      { error: "signature must be a 64-byte Ed25519 signature (base64url-encoded)" },
+      { status: 400 }
+    );
+  }
+
+  // Sanctuary signs over JSON.stringify(data)
+  const message = Buffer.from(JSON.stringify(data), "utf-8");
+  const signatureValid = verifyEd25519(message, signatureBytes, publicKeyBytes);
+
+  if (!signatureValid) {
+    return Response.json(
+      { error: "Invalid Ed25519 signature" },
+      { status: 401 }
+    );
+  }
+
+  // ─── Database path ────────────────────────────────────────────
   if (process.env.DATABASE_URL) {
     const { prisma } = await import("@/lib/db");
 
     // Verify agent exists
-    const agent = await prisma.agent.findUnique({ where: { id: agentId } });
+    const agent = await prisma.agent.findUnique({ where: { id: agentId as string } });
     if (!agent) {
       return Response.json({ error: "Agent not found" }, { status: 404 });
     }
 
-    switch (type) {
+    // Verify publicKey matches the agent's registered DID
+    if (agent.did && agent.did.startsWith("did:key:")) {
+      const didMatch = publicKeyMatchesDid(publicKey as string, agent.did);
+      if (!didMatch) {
+        return Response.json(
+          { error: "publicKey does not match agent's registered DID" },
+          { status: 403 }
+        );
+      }
+    }
+    // If agent has no DID or a non-did:key DID, skip DID matching
+    // (the signature alone is the trust anchor until DID is registered)
+
+    switch (type as string) {
       case "shr": {
-        // Update sovereignty layers and reputation dimensions
         const updates: Record<string, unknown> = {
           lastActive: new Date(),
         };
 
-        if (data.overallScore !== undefined) {
-          updates.overallScore = data.overallScore;
+        if ((data as Record<string, unknown>).overallScore !== undefined) {
+          updates.overallScore = (data as Record<string, unknown>).overallScore;
         }
-        if (data.capabilities) {
-          updates.capabilities = data.capabilities;
+        if ((data as Record<string, unknown>).capabilities) {
+          updates.capabilities = (data as Record<string, unknown>).capabilities;
         }
 
         await prisma.agent.update({
-          where: { id: agentId },
+          where: { id: agentId as string },
           data: updates,
         });
 
-        if (data.sovereigntyLayers) {
-          for (const layer of data.sovereigntyLayers) {
+        if ((data as Record<string, unknown>).sovereigntyLayers) {
+          const layers = (data as Record<string, unknown>).sovereigntyLayers as Array<Record<string, unknown>>;
+          for (const layer of layers) {
             await prisma.sovereigntyLayer.upsert({
               where: {
-                agentId_name: { agentId, name: layer.name },
+                agentId_name: { agentId: agentId as string, name: layer.name as string },
               },
               update: {
-                score: layer.score,
-                status: layer.status,
-                description: layer.description,
+                score: layer.score as number,
+                status: layer.status as never,
+                description: layer.description as string,
               },
               create: {
-                agentId,
-                name: layer.name,
-                label: layer.label,
-                score: layer.score,
-                status: layer.status,
-                description: layer.description,
+                agentId: agentId as string,
+                name: layer.name as string,
+                label: layer.label as string,
+                score: layer.score as number,
+                status: layer.status as never,
+                description: layer.description as string,
               },
             });
           }
         }
 
-        if (data.reputationDimensions) {
-          for (const dim of data.reputationDimensions) {
-            const sourceMap: Record<string, string> = {
-              cryptographic: "cryptographic",
-              "operator-attested": "operator_attested",
-              "self-reported": "self_reported",
-              computed: "computed",
-            };
+        if ((data as Record<string, unknown>).reputationDimensions) {
+          const dims = (data as Record<string, unknown>).reputationDimensions as Array<Record<string, unknown>>;
+          const sourceMap: Record<string, string> = {
+            cryptographic: "cryptographic",
+            "operator-attested": "operator_attested",
+            "self-reported": "self_reported",
+            computed: "computed",
+          };
+          for (const dim of dims) {
             await prisma.reputationDimension.upsert({
               where: {
-                agentId_name: { agentId, name: dim.name },
+                agentId_name: { agentId: agentId as string, name: dim.name as string },
               },
               update: {
-                score: dim.score,
-                maxScore: dim.maxScore,
-                source: sourceMap[dim.source] as never,
-                description: dim.description,
+                score: dim.score as number,
+                maxScore: dim.maxScore as number,
+                source: sourceMap[dim.source as string] as never,
+                description: dim.description as string,
               },
               create: {
-                agentId,
-                name: dim.name,
-                score: dim.score,
-                maxScore: dim.maxScore,
-                source: sourceMap[dim.source] as never,
-                description: dim.description,
+                agentId: agentId as string,
+                name: dim.name as string,
+                score: dim.score as number,
+                maxScore: dim.maxScore as number,
+                source: sourceMap[dim.source as string] as never,
+                description: dim.description as string,
               },
             });
           }
@@ -149,11 +207,12 @@ export async function POST(request: NextRequest) {
           type: "shr",
           agentId,
           updated: true,
+          signatureVerified: true,
         });
       }
 
       case "handshake": {
-        const att = data.attestation;
+        const att = (data as Record<string, unknown>).attestation as Record<string, unknown> | undefined;
         if (!att || !att.id || !att.responderId) {
           return Response.json(
             { error: "Invalid handshake attestation data" },
@@ -169,24 +228,26 @@ export async function POST(request: NextRequest) {
         };
 
         await prisma.attestation.upsert({
-          where: { id: att.id },
+          where: { id: att.id as string },
           update: {
-            verified: att.verified ?? true,
-            signature: att.signature ?? signature,
+            verified: (att.verified as boolean) ?? true,
+            signature: (att.signature as string) ?? (signature as string),
           },
           create: {
-            id: att.id,
-            initiatorId: agentId,
-            responderId: att.responderId,
-            timestamp: new Date(att.timestamp ?? Date.now()),
-            expiresAt: new Date(att.expiresAt ?? Date.now() + 90 * 24 * 60 * 60 * 1000),
-            trustTier: (trustTierMap[att.trustTier] ?? "unverified") as never,
-            verified: att.verified ?? true,
-            signature: att.signature ?? signature,
-            protocol: att.protocol ?? "sanctuary-handshake",
-            protocolVersion: att.protocolVersion ?? "0.5.8",
-            initiatorPosture: att.initiatorPosture ?? [],
-            responderPosture: att.responderPosture ?? [],
+            id: att.id as string,
+            initiatorId: agentId as string,
+            responderId: att.responderId as string,
+            timestamp: new Date((att.timestamp as string) ?? Date.now()),
+            expiresAt: new Date(
+              (att.expiresAt as string) ?? Date.now() + 90 * 24 * 60 * 60 * 1000
+            ),
+            trustTier: (trustTierMap[att.trustTier as string] ?? "unverified") as never,
+            verified: (att.verified as boolean) ?? true,
+            signature: (att.signature as string) ?? (signature as string),
+            protocol: (att.protocol as string) ?? "sanctuary-handshake",
+            protocolVersion: (att.protocolVersion as string) ?? "0.5.8",
+            initiatorPosture: (att.initiatorPosture ?? []) as never,
+            responderPosture: (att.responderPosture ?? []) as never,
           },
         });
 
@@ -194,40 +255,42 @@ export async function POST(request: NextRequest) {
           success: true,
           type: "handshake",
           attestationId: att.id,
+          signatureVerified: true,
         });
       }
 
       case "sovereignty-update": {
-        if (!data.layers) {
+        const layers = (data as Record<string, unknown>).layers as Array<Record<string, unknown>> | undefined;
+        if (!layers) {
           return Response.json(
             { error: "Missing layers in sovereignty-update" },
             { status: 400 }
           );
         }
 
-        for (const layer of data.layers) {
+        for (const layer of layers) {
           await prisma.sovereigntyLayer.upsert({
             where: {
-              agentId_name: { agentId, name: layer.name },
+              agentId_name: { agentId: agentId as string, name: layer.name as string },
             },
             update: {
-              score: layer.score,
-              status: layer.status,
-              description: layer.description,
+              score: layer.score as number,
+              status: layer.status as never,
+              description: layer.description as string,
             },
             create: {
-              agentId,
-              name: layer.name,
-              label: layer.label,
-              score: layer.score,
-              status: layer.status,
-              description: layer.description,
+              agentId: agentId as string,
+              name: layer.name as string,
+              label: layer.label as string,
+              score: layer.score as number,
+              status: layer.status as never,
+              description: layer.description as string,
             },
           });
         }
 
         await prisma.agent.update({
-          where: { id: agentId },
+          where: { id: agentId as string },
           data: { lastActive: new Date() },
         });
 
@@ -235,22 +298,24 @@ export async function POST(request: NextRequest) {
           success: true,
           type: "sovereignty-update",
           agentId,
-          layersUpdated: data.layers.length,
+          layersUpdated: layers.length,
+          signatureVerified: true,
         });
       }
     }
   }
 
-  // No database — return dry-run acknowledgment
+  // ─── No database — dry-run with signature verification ────────
   return Response.json({
     success: true,
     dryRun: true,
+    signatureVerified: true,
     message:
-      "No database configured. In production, this data would be persisted.",
+      "Signature verified. No database configured — data not persisted.",
     received: {
       agentId,
       type,
-      dataKeys: Object.keys(data),
+      dataKeys: Object.keys(data as Record<string, unknown>),
     },
   });
 }

@@ -1,47 +1,10 @@
-import { createPublicKey, verify } from "crypto";
 import { getAgent } from "@/lib/data";
+import { verifyEd25519, base64urlToBuffer } from "@/lib/crypto";
 import {
   getChallenge,
   deleteChallenge,
   cleanupExpiredChallenges,
 } from "@/lib/challenge-store";
-
-// Helper function to verify Ed25519 signature
-function verifyEd25519(
-  message: Buffer,
-  signature: Buffer,
-  publicKeyRaw: Buffer
-): boolean {
-  try {
-    // Ed25519 DER prefix for SPKI format
-    const derPrefix = Buffer.from("302a300506032b6570032100", "hex");
-    const publicKeyDer = Buffer.concat([derPrefix, publicKeyRaw]);
-
-    const publicKey = createPublicKey({
-      key: publicKeyDer,
-      format: "der",
-      type: "spki",
-    });
-
-    return verify(null, message, publicKey, signature);
-  } catch (error) {
-    return false;
-  }
-}
-
-// Decode base64url to Buffer
-function base64urlToBuffer(str: string): Buffer {
-  // Convert base64url to base64
-  const base64 = str
-    .replace(/-/g, "+")
-    .replace(/_/g, "/");
-
-  // Add padding if needed
-  const padding = (4 - (base64.length % 4)) % 4;
-  const paddedBase64 = base64 + "=".repeat(padding);
-
-  return Buffer.from(paddedBase64, "base64");
-}
 
 export async function POST(request: Request) {
   const body = await request.json() as Record<string, unknown>;
@@ -111,7 +74,6 @@ export async function POST(request: Request) {
   const claimedAt = new Date().toISOString();
 
   if (process.env.DATABASE_URL) {
-    // Update in Prisma database
     try {
       const { prisma } = await import("@/lib/db");
       await prisma.agent.update({
@@ -129,18 +91,15 @@ export async function POST(request: Request) {
       );
     }
   } else {
-    // Update in JSON fallback (this won't persist across restarts)
     try {
       const agentsModule = await import("@/data/agents.json");
       const agents = agentsModule.default as Array<Record<string, unknown>>;
       const agentIndex = agents.findIndex((a) => a.id === agent.id);
       if (agentIndex !== -1) {
         agents[agentIndex].claimStatus = "claimed";
-        // Note: JSON updates are in-memory only in this setup
       }
     } catch (error) {
       console.error("JSON update failed:", error);
-      // Continue anyway — the claim is verified, just not persisted
     }
   }
 
