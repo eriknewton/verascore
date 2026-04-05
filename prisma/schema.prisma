@@ -61,6 +61,9 @@ model Agent {
   sanctuaryVersion String?
   concordiaVersion String?
   endpoints    Json?
+  // DELTA-19: handshake-sourced responder stubs expire after 30 days
+  // unless the responder itself publishes (clearing the expiry).
+  stubExpiresAt DateTime?
 
   sovereigntyLayers    SovereigntyLayer[]
   reputationDimensions ReputationDimension[]

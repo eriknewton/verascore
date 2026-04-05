@@ -188,6 +188,8 @@ export async function POST(request: NextRequest) {
       case "shr": {
         const updates: Record<string, unknown> = {
           lastActive: new Date(),
+          // DELTA-19: clear stub expiry when the agent publishes for itself.
+          stubExpiresAt: null,
         };
 
         if ((data as Record<string, unknown>).overallScore !== undefined) {
@@ -282,10 +284,14 @@ export async function POST(request: NextRequest) {
           unverified: "unverified",
         };
 
-        // Handshake fix: auto-create responder agent stub if it doesn't exist.
-        // Without this, a FK constraint violation on Attestation.responderId
-        // crashed the route and returned an HTML error page, producing a
-        // malformed-JSON response for clients parsing the new attestation ID.
+        // DELTA-19: auto-create responder agent stub if it doesn't exist.
+        // The publishing agent's pubkey is already verified (we derived
+        // agentId from it above). The responder stub is created with
+        //   trustTier = "unverified"
+        //   claimStatus = "unclaimed"
+        //   stubExpiresAt = now + 30 days
+        // The stub will be reaped after 30 days unless the responder
+        // itself publishes (clearing stubExpiresAt).
         const responderIdStr = att.responderId as string;
         const existingResponder = await prisma.agent.findUnique({
           where: { id: responderIdStr },
@@ -295,6 +301,7 @@ export async function POST(request: NextRequest) {
             typeof att.responderDid === "string" ? att.responderDid : "";
           const responderFragment =
             (responderDid || responderIdStr).slice(-8) || responderIdStr;
+          const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
           await prisma.agent.create({
             data: {
               id: responderIdStr,
@@ -305,10 +312,12 @@ export async function POST(request: NextRequest) {
               did: responderDid,
               keyType: "ed25519",
               platform: "unknown",
-              description: "Auto-created via handshake attestation",
+              description:
+                "Auto-created via handshake attestation (stub, pending responder confirmation)",
               claimStatus: "unclaimed",
               trustTier: "unverified",
               capabilities: [],
+              stubExpiresAt: new Date(Date.now() + THIRTY_DAYS_MS),
             },
           });
         }
