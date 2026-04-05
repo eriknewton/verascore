@@ -75,7 +75,22 @@ export async function POST(request: Request) {
     );
   }
 
-  const message = Buffer.from(nonce, "utf-8");
+  // Domain-separated claim challenge message.
+  // Must match Sanctuary's sanctuary_sign_challenge tool (purpose="verascore-claim"):
+  //   "sanctuary-sign-challenge-v1" || 0x00 || "verascore-claim" || 0x00 || nonce
+  const DOMAIN_TAG = "sanctuary-sign-challenge-v1";
+  const PURPOSE = "verascore-claim";
+  const tagBytes = Buffer.from(DOMAIN_TAG, "utf-8");
+  const purposeBytes = Buffer.from(PURPOSE, "utf-8");
+  const nonceBytes = Buffer.from(nonce, "utf-8");
+  const sep = Buffer.from([0x00]);
+  const message = Buffer.concat([
+    tagBytes,
+    sep,
+    purposeBytes,
+    sep,
+    nonceBytes,
+  ]);
   const isValid = verifyEd25519(message, signature, publicKeyRaw);
   if (!isValid) {
     return Response.json({ error: "Invalid signature" }, { status: 401 });
