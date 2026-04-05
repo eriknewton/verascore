@@ -5,6 +5,7 @@ import { getAgent } from "@/lib/data";
 import { cn, formatDate, activityBucket, truncateDid, scoreColor } from "@/lib/utils";
 import { ScoreGauge } from "@/components/ScoreGauge";
 import { TrustBadge } from "@/components/TrustBadge";
+import { ScoreTierLadder } from "@/components/ScoreTierLadder";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -259,6 +260,15 @@ export default async function AgentProfilePage({ params }: PageProps) {
 
         {/* Right Column */}
         <div className="space-y-6">
+          {/* Tier Ladder */}
+          <ScoreTierLadder
+            currentScore={agent.overallScore}
+            currentTier={agent.trustTier}
+            handshakeCount={agent.handshakes.length}
+            shrCount={agent.badges.filter((b) => b.icon === "shield").length}
+            attestationCount={agent.handshakes.filter((h) => h.verified).length}
+          />
+
           {/* Metadata */}
           <div className="p-5 rounded-xl bg-surface">
             <h3 className="text-sm font-semibold text-foreground mb-4 font-[var(--font-space-grotesk)] uppercase tracking-wider">

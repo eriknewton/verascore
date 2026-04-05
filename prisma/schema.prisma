@@ -56,6 +56,11 @@ model Agent {
   trustTier    TrustTier   @default(unverified)
   capabilities String[]
   avatarUrl    String?
+  want         String[]    @default([])
+  have         String[]    @default([])
+  sanctuaryVersion String?
+  concordiaVersion String?
+  endpoints    Json?
 
   sovereigntyLayers    SovereigntyLayer[]
   reputationDimensions ReputationDimension[]
