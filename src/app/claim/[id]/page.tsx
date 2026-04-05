@@ -12,8 +12,18 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+// Next.js 16 page routes do not auto-decode URL-encoded dynamic segments.
+function decodeId(raw: string): string {
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { id } = await params;
+  const { id: rawId } = await params;
+  const id = decodeId(rawId);
   const agent = await getAgent(id);
   if (!agent) return { title: "Agent Not Found" };
   return {
@@ -23,7 +33,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function ClaimPage({ params }: PageProps) {
-  const { id } = await params;
+  const { id: rawId } = await params;
+  const id = decodeId(rawId);
   const agent = await getAgent(id);
 
   if (!agent) {

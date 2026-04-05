@@ -5,12 +5,24 @@ import { getAttestation } from "@/lib/data";
 import { cn, formatDateTime, statusBgColor, scoreColor } from "@/lib/utils";
 import { TrustBadge } from "@/components/TrustBadge";
 
+export const dynamic = "force-dynamic";
+
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+// Next.js 16 page routes do not auto-decode URL-encoded dynamic segments.
+function decodeId(raw: string): string {
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { id } = await params;
+  const { id: rawId } = await params;
+  const id = decodeId(rawId);
   const attestation = await getAttestation(id);
   if (!attestation) return { title: "Attestation Not Found" };
   return {
@@ -20,7 +32,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function VerifyPage({ params }: PageProps) {
-  const { id } = await params;
+  const { id: rawId } = await params;
+  const id = decodeId(rawId);
   const attestation = await getAttestation(id);
 
   if (!attestation) {

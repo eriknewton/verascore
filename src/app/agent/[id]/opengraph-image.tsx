@@ -5,8 +5,18 @@ export const alt = "Agent Profile — Verascore";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+// Next.js 16 does not auto-decode URL-encoded dynamic segments on page routes.
+function decodeId(raw: string): string {
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
+}
+
 export default async function Image({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+  const { id: rawId } = await params;
+  const id = decodeId(rawId);
   const agent = await getAgent(id);
 
   if (!agent) {
