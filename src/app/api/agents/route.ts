@@ -6,6 +6,7 @@ import {
   publicKeyFromDid,
 } from "@/lib/crypto";
 import { verifyRegisterChallenge } from "@/lib/register-challenge";
+import { checkRateLimitDb } from "@/lib/rate-limit-db";
 
 // ─── Rate limiter for POST /api/agents ────────────────────────────
 // Simple in-memory per-IP limiter: 5 stub agents per IP per hour.
@@ -81,7 +82,13 @@ const HTTPS_URL_REGEX = /^https?:\/\/[A-Za-z0-9._\-/:?&=%#~+,;@!$'()*]+$/;
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
-  if (!checkPostRateLimit(ip)) {
+  const rl = await checkRateLimitDb(
+    "agents-post",
+    ip,
+    POST_RATE_MAX,
+    POST_RATE_WINDOW_MS
+  );
+  if (!rl.allowed) {
     return Response.json(
       { error: "Rate limit exceeded. Max 5 stub agents per IP per hour." },
       { status: 429 }

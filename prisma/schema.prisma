@@ -187,6 +187,21 @@ model MagicLinkToken {
   @@index([expiresAt])
 }
 
+// DELTA-06: Prisma-backed rate limit bucket. Replaces the in-memory
+// Map<string, ...> rate limiters so the limit holds across serverless
+// invocations (each cold start was resetting the in-memory store).
+model RateLimitBucket {
+  id          String   @id @default(cuid())
+  surface     String   // e.g. "auth-request", "publish", "agents-post"
+  identity    String   // normalized caller key (email hash, ip, pubkey)
+  windowStart DateTime
+  count       Int      @default(0)
+  expiresAt   DateTime
+
+  @@unique([surface, identity, windowStart])
+  @@index([expiresAt])
+}
+
 model ClaimChallenge {
   id        String    @id @default(cuid())
   nonce     String    @unique

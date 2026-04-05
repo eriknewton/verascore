@@ -196,5 +196,36 @@ test("forged signature is rejected", () => {
   assert.equal(r.ok, false);
 });
 
+console.log("\nDELTA-13 email normalization:");
+import { canonicalizeEmailForRateLimit } from "../src/lib/email-normalize.js";
+
+test("lowercases and strips +tag", () => {
+  const a = canonicalizeEmailForRateLimit("Foo+bar@Example.com");
+  const b = canonicalizeEmailForRateLimit("foo@example.com");
+  assert.equal(a, b);
+});
+
+test("strips dots in gmail localpart only", () => {
+  const a = canonicalizeEmailForRateLimit("f.o.o@gmail.com");
+  const b = canonicalizeEmailForRateLimit("foo@gmail.com");
+  assert.equal(a, b);
+  // non-gmail domain: dots are preserved
+  const c = canonicalizeEmailForRateLimit("f.o.o@example.com");
+  const d = canonicalizeEmailForRateLimit("foo@example.com");
+  assert.notEqual(c, d);
+});
+
+test("treats googlemail.com as gmail.com-compatible", () => {
+  const a = canonicalizeEmailForRateLimit("f.oo+test@googlemail.com");
+  const b = canonicalizeEmailForRateLimit("foo@googlemail.com");
+  assert.equal(a, b);
+});
+
+test("output is a fixed-length base64url hash (no plaintext leak)", () => {
+  const out = canonicalizeEmailForRateLimit("foo@example.com");
+  assert.match(out, /^[A-Za-z0-9_-]+$/);
+  assert.equal(out.includes("@"), false);
+});
+
 console.log(`\n${passed} passed, ${failed} failed`);
 if (failed > 0) process.exit(1);

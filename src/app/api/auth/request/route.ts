@@ -1,4 +1,6 @@
 import { randomBytes } from "crypto";
+import { checkRateLimitDb } from "@/lib/rate-limit-db";
+import { canonicalizeEmailForRateLimit } from "@/lib/email-normalize";
 
 /**
  * POST /api/auth/request — magic-link request endpoint.
@@ -9,33 +11,16 @@ import { randomBytes } from "crypto";
  * cryptographically random URL-safe token. The "email" is stubbed —
  * we log the verify URL to the console instead of sending SMTP.
  *
- * Rate limited to 3 requests per email per 15 minutes using an
- * in-memory Map. Responds { ok: true } for both known and unknown
- * emails so the endpoint does not leak account existence.
+ * DELTA-06: rate limited via Prisma-backed RateLimitBucket.
+ * DELTA-13: rate-limit key uses a canonicalized SHA-256 hash of the
+ *           email (lowercased, +tag stripped, dots stripped for gmail).
+ * DELTA-16: DB failure returns 503 (fail closed).
  */
 
 const TOKEN_BYTES = 32;
 const TTL_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000;
-
-interface RateEntry {
-  count: number;
-  windowStart: number;
-}
-const rateStore = new Map<string, RateEntry>();
-
-function checkEmailRate(email: string): boolean {
-  const now = Date.now();
-  const entry = rateStore.get(email);
-  if (!entry || now - entry.windowStart > RATE_LIMIT_WINDOW) {
-    rateStore.set(email, { count: 1, windowStart: now });
-    return true;
-  }
-  if (entry.count >= RATE_LIMIT_MAX) return false;
-  entry.count++;
-  return true;
-}
 
 function urlSafeToken(): string {
   return randomBytes(TOKEN_BYTES).toString("base64url");
@@ -58,7 +43,14 @@ export async function POST(request: Request) {
     return Response.json({ error: "Invalid email" }, { status: 400 });
   }
 
-  if (!checkEmailRate(email)) {
+  const rlKey = canonicalizeEmailForRateLimit(email);
+  const rl = await checkRateLimitDb(
+    "auth-request",
+    rlKey,
+    RATE_LIMIT_MAX,
+    RATE_LIMIT_WINDOW
+  );
+  if (!rl.allowed) {
     return Response.json(
       { error: "Too many requests. Try again in 15 minutes." },
       { status: 429 }
@@ -67,7 +59,8 @@ export async function POST(request: Request) {
 
   const token = urlSafeToken();
   const expiresAt = new Date(Date.now() + TTL_MS);
-  const baseUrl = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
+  // DELTA-12: require NEXT_PUBLIC_URL in production (fail closed).
+  const baseUrl = getBaseUrl();
   const verifyUrl = `${baseUrl}/api/auth/verify?token=${token}`;
 
   if (process.env.DATABASE_URL) {
@@ -77,8 +70,15 @@ export async function POST(request: Request) {
         data: { token, email, expiresAt },
       });
     } catch (err) {
-      console.warn("auth/request: DB insert failed (table may be missing)", err);
-      // Intentionally don't reveal DB state to caller.
+      // DELTA-16: fail closed on DB failure + alerting-quality log.
+      console.error(
+        "[auth/request] DB insert failed — magic link NOT issued",
+        err
+      );
+      return Response.json(
+        { error: "Auth backend unavailable. Try again later." },
+        { status: 503 }
+      );
     }
   }
 
@@ -86,4 +86,15 @@ export async function POST(request: Request) {
   console.log(`[auth] magic link for ${email}: ${verifyUrl}`);
 
   return Response.json({ ok: true });
+}
+
+function getBaseUrl(): string {
+  const configured = process.env.NEXT_PUBLIC_URL;
+  if (configured && configured.startsWith("http")) return configured;
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(
+      "NEXT_PUBLIC_URL must be set in production (no localhost fallback)"
+    );
+  }
+  return "http://localhost:3000";
 }

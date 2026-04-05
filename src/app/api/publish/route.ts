@@ -5,7 +5,7 @@ import {
   publicKeyMatchesDid,
   deriveAgentId,
 } from "@/lib/crypto";
-import { checkRateLimit } from "@/lib/rate-limit";
+import { checkRateLimitDb } from "@/lib/rate-limit-db";
 
 /**
  * POST /api/publish — Sanctuary reputation_publish endpoint
@@ -58,11 +58,12 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // ─── Rate limiting ────────────────────────────────────────────
-  // Keyed on publicKey (cheap to pre-verify before signature check) —
-  // agentId is untrusted until we derive it from the verified key below.
-  const rateCheck = checkRateLimit(
-    `publish:${publicKey as string}`,
+  // ─── Rate limiting (DELTA-06) ─────────────────────────────────
+  // Keyed on publicKey (agentId is untrusted until we derive it from
+  // the verified key below).
+  const rateCheck = await checkRateLimitDb(
+    "publish",
+    publicKey as string,
     RATE_LIMIT_MAX,
     RATE_LIMIT_WINDOW
   );
@@ -71,7 +72,7 @@ export async function POST(request: NextRequest) {
     return Response.json(
       {
         error: "Rate limit exceeded",
-        retryAfterMs: rateCheck.resetIn,
+        retryAfterMs: rateCheck.resetInMs,
       },
       { status: 429 }
     );
