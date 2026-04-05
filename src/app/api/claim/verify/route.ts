@@ -3,7 +3,13 @@ import {
   base64urlToBuffer,
   publicKeyFromDid,
 } from "@/lib/crypto";
-import { getSessionUser } from "@/lib/auth";
+import {
+  getSessionUser,
+  readSessionToken,
+  buildSessionCookie,
+  SESSION_TTL_MS,
+} from "@/lib/auth";
+import { randomBytes } from "crypto";
 
 /**
  * POST /api/claim/verify — human-initiated claim verification.
@@ -160,7 +166,28 @@ export async function POST(request: Request) {
       data: { claimStatus: "claimed" },
     });
 
-    return Response.json({ ok: true, agentId: agent.id });
+    // DELTA-15: rotate session token on claim completion so a stolen
+    // pre-claim token cannot be used to impersonate a claimed agent.
+    const oldToken = readSessionToken(request);
+    const headers = new Headers();
+    headers.set("Content-Type", "application/json");
+    if (oldToken) {
+      try {
+        const newToken = randomBytes(32).toString("base64url");
+        const newExpiresAt = new Date(Date.now() + SESSION_TTL_MS);
+        await prisma.session.updateMany({
+          where: { token: oldToken },
+          data: { token: newToken, expiresAt: newExpiresAt },
+        });
+        headers.set("Set-Cookie", buildSessionCookie(newToken, newExpiresAt));
+      } catch (err) {
+        console.warn("[claim/verify] session rotation failed", err);
+      }
+    }
+    return new Response(
+      JSON.stringify({ ok: true, agentId: agent.id }),
+      { status: 200, headers }
+    );
   } catch (err) {
     console.warn("claim/verify: DB error", err);
     return Response.json(

@@ -68,6 +68,10 @@ export async function GET(request: Request) {
     const headers = new Headers();
     headers.set("Location", `${baseUrl}/fleet`);
     headers.set("Set-Cookie", buildSessionCookie(sessionToken, expiresAt));
+    // DELTA-07: never leak the magic-link token to the destination page
+    // via Referer (e.g. if /fleet embeds third-party images/scripts).
+    headers.set("Referrer-Policy", "no-referrer");
+    headers.set("Cache-Control", "no-store");
 
     return new Response(null, { status: 302, headers });
   } catch (err) {
