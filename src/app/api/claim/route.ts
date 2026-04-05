@@ -1,53 +1,68 @@
-import { getAgent } from "@/lib/data";
-import { cleanupExpiredChallenges, storeChallenge } from "@/lib/challenge-store";
 import { randomBytes } from "crypto";
+import { getSessionUser } from "@/lib/auth";
 
-const CHALLENGE_ID_SIZE = 32;
-const NONCE_SIZE = 32;
+/**
+ * POST /api/claim — human-initiated agent claim challenge.
+ *
+ * Authenticated (session cookie required). The caller asserts
+ * ownership of an agent identified by its DID. We generate a
+ * random 32-byte nonce, store a ClaimChallenge bound to the
+ * user + DID, and return it for signing.
+ *
+ * Body: { did }
+ * Response: { nonce, expiresAt }
+ *
+ * TTL: 10 minutes.
+ */
 
-function generateRandomHex(bytes: number): string {
-  return randomBytes(bytes).toString("hex");
-}
+const NONCE_BYTES = 32;
+const CHALLENGE_TTL_MS = 10 * 60 * 1000;
 
 export async function POST(request: Request) {
-  const body = await request.json() as Record<string, unknown>;
-  const { agentId } = body;
+  const user = await getSessionUser(request);
+  if (!user) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
+  }
 
-  if (!agentId) {
+  let body: Record<string, unknown>;
+  try {
+    body = (await request.json()) as Record<string, unknown>;
+  } catch {
+    return Response.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
+
+  const did = typeof body.did === "string" ? body.did.trim() : "";
+  if (!did.startsWith("did:")) {
+    return Response.json({ error: "Invalid DID" }, { status: 400 });
+  }
+
+  if (!process.env.DATABASE_URL) {
     return Response.json(
-      { error: "Missing required field: agentId" },
-      { status: 400 }
+      { error: "Claim flow requires a database" },
+      { status: 503 }
     );
   }
 
-  const agent = await getAgent(agentId as string);
-  if (!agent) {
-    return Response.json({ error: "Agent not found" }, { status: 404 });
-  }
+  const nonce = randomBytes(NONCE_BYTES).toString("base64url");
+  const expiresAt = new Date(Date.now() + CHALLENGE_TTL_MS);
 
-  if (agent.claimStatus === "claimed") {
+  try {
+    const { prisma } = await import("@/lib/db");
+    await prisma.claimChallenge.create({
+      data: {
+        nonce,
+        did,
+        userId: user.id,
+        expiresAt,
+      },
+    });
+  } catch (err) {
+    console.warn("claim: DB insert failed", err);
     return Response.json(
-      { error: "Agent already claimed" },
-      { status: 409 }
+      { error: "Claim challenge store unavailable" },
+      { status: 503 }
     );
   }
 
-  // Clean up expired challenges
-  cleanupExpiredChallenges();
-
-  // Generate a new challenge
-  const challengeId = generateRandomHex(CHALLENGE_ID_SIZE);
-  const nonce = generateRandomHex(NONCE_SIZE);
-
-  storeChallenge(challengeId, nonce, agentId as string);
-
-  return Response.json({
-    success: true,
-    challengeId,
-    nonce,
-    agentId,
-    expiresIn: 300,
-    message:
-      "Challenge generated. Sign the nonce with your Ed25519 private key and submit it to /api/claim/verify",
-  });
+  return Response.json({ nonce, expiresAt: expiresAt.toISOString() });
 }
