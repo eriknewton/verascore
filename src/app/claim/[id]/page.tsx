@@ -6,6 +6,8 @@ import { truncateDid } from "@/lib/utils";
 import { TrustBadge } from "@/components/TrustBadge";
 import { ClaimFlow } from "@/components/ClaimFlow";
 
+export const dynamic = "force-dynamic";
+
 interface PageProps {
   params: Promise<{ id: string }>;
 }

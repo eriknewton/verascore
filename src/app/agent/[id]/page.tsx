@@ -7,6 +7,10 @@ import { ScoreGauge } from "@/components/ScoreGauge";
 import { TrustBadge } from "@/components/TrustBadge";
 import { ScoreTierLadder } from "@/components/ScoreTierLadder";
 
+// Force dynamic rendering — agent data is frequently updated and stale 404s
+// from the Full Route Cache would block freshly auto-created stubs.
+export const dynamic = "force-dynamic";
+
 interface PageProps {
   params: Promise<{ id: string }>;
 }
