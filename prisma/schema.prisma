@@ -35,6 +35,11 @@ enum SignalSource {
   computed
 }
 
+enum OwnershipMethod {
+  HUMAN_INITIATED
+  AGENT_INITIATED
+}
+
 // ─── Core Tables ─────────────────────────────────────────────────
 
 model Agent {
@@ -59,6 +64,9 @@ model Agent {
   // Handshake relations (as either party)
   initiatedAttestations Attestation[] @relation("Initiator")
   receivedAttestations  Attestation[] @relation("Responder")
+
+  // Human ownership relation
+  ownerships AgentOwnership[]
 
   @@index([trustTier])
   @@index([overallScore])
@@ -129,4 +137,70 @@ model Attestation {
   @@index([initiatorId])
   @@index([responderId])
   @@index([verified])
+}
+
+// ─── Auth / Ownership ────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime?
+  name          String?
+  createdAt     DateTime  @default(now())
+
+  ownerships AgentOwnership[]
+  sessions   Session[]
+}
+
+model AgentOwnership {
+  id         String          @id @default(cuid())
+  userId     String
+  agentId    String
+  verifiedAt DateTime        @default(now())
+  method     OwnershipMethod
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  agent Agent @relation(fields: [agentId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, agentId])
+  @@index([userId])
+  @@index([agentId])
+}
+
+model MagicLinkToken {
+  id        String    @id @default(cuid())
+  token     String    @unique
+  email     String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([email])
+  @@index([expiresAt])
+}
+
+model ClaimChallenge {
+  id        String    @id @default(cuid())
+  nonce     String    @unique
+  did       String
+  userId    String?
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([did])
+  @@index([expiresAt])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
 }

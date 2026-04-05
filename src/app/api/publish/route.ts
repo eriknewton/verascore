@@ -110,10 +110,37 @@ export async function POST(request: NextRequest) {
   if (process.env.DATABASE_URL) {
     const { prisma } = await import("@/lib/db");
 
-    // Verify agent exists
-    const agent = await prisma.agent.findUnique({ where: { id: agentId as string } });
+    // ─── Auto-create path ───────────────────────────────────────
+    // When a signed DID arrives without an existing agent record,
+    // we auto-upsert a stub agent. The signature is the trust anchor;
+    // the stub starts at unverified/self-attested.
+    let agent = await prisma.agent.findUnique({ where: { id: agentId as string } });
     if (!agent) {
-      return Response.json({ error: "Agent not found" }, { status: 404 });
+      const dataRecord = data as Record<string, unknown>;
+      const payloadName = typeof dataRecord.name === "string" ? dataRecord.name : undefined;
+      const didStr = typeof dataRecord.did === "string" ? dataRecord.did : "";
+      // Fragment: last 8 chars of DID, or agentId fallback
+      const fragment =
+        (didStr || (agentId as string)).slice(-8) || (agentId as string);
+      const defaultName = payloadName ?? `agent-${fragment}`;
+
+      agent = await prisma.agent.create({
+        data: {
+          id: agentId as string,
+          name: defaultName,
+          did: didStr,
+          keyType: "ed25519",
+          platform:
+            typeof dataRecord.platform === "string" ? dataRecord.platform : "unknown",
+          description:
+            typeof dataRecord.description === "string"
+              ? dataRecord.description
+              : "Auto-created via reputation_publish",
+          claimStatus: "unclaimed",
+          trustTier: "unverified",
+          capabilities: [],
+        },
+      });
     }
 
     // Verify publicKey matches the agent's registered DID
@@ -226,6 +253,37 @@ export async function POST(request: NextRequest) {
           "self-attested": "self_attested",
           unverified: "unverified",
         };
+
+        // Handshake fix: auto-create responder agent stub if it doesn't exist.
+        // Without this, a FK constraint violation on Attestation.responderId
+        // crashed the route and returned an HTML error page, producing a
+        // malformed-JSON response for clients parsing the new attestation ID.
+        const responderIdStr = att.responderId as string;
+        const existingResponder = await prisma.agent.findUnique({
+          where: { id: responderIdStr },
+        });
+        if (!existingResponder) {
+          const responderDid =
+            typeof att.responderDid === "string" ? att.responderDid : "";
+          const responderFragment =
+            (responderDid || responderIdStr).slice(-8) || responderIdStr;
+          await prisma.agent.create({
+            data: {
+              id: responderIdStr,
+              name:
+                typeof att.responderName === "string"
+                  ? att.responderName
+                  : `agent-${responderFragment}`,
+              did: responderDid,
+              keyType: "ed25519",
+              platform: "unknown",
+              description: "Auto-created via handshake attestation",
+              claimStatus: "unclaimed",
+              trustTier: "unverified",
+              capabilities: [],
+            },
+          });
+        }
 
         await prisma.attestation.upsert({
           where: { id: att.id as string },
