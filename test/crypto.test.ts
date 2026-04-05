@@ -139,5 +139,62 @@ test("publicKeyFromDid round-trips with publicKeyToDidBase64url", () => {
   assert.equal(extracted!.toString("hex"), pub.toString("hex"));
 });
 
+console.log("\nDELTA-02 register-challenge HMAC:");
+import {
+  issueRegisterChallenge,
+  verifyRegisterChallenge,
+} from "../src/lib/register-challenge.js";
+
+// Ensure a stable secret for this run.
+process.env.REGISTER_CHALLENGE_SECRET =
+  process.env.REGISTER_CHALLENGE_SECRET ??
+  "01234567890123456789012345678901234567890123456789abcdef";
+
+test("issued challenge verifies", () => {
+  const c = issueRegisterChallenge("did:key:zABC");
+  const r = verifyRegisterChallenge(
+    c.did,
+    c.nonce,
+    c.expiresAt,
+    c.signature
+  );
+  assert.equal(r.ok, true);
+});
+
+test("tampered nonce is rejected", () => {
+  const c = issueRegisterChallenge("did:key:zABC");
+  const r = verifyRegisterChallenge(c.did, c.nonce + "x", c.expiresAt, c.signature);
+  assert.equal(r.ok, false);
+});
+
+test("mismatched DID is rejected", () => {
+  const c = issueRegisterChallenge("did:key:zABC");
+  const r = verifyRegisterChallenge(
+    "did:key:zXYZ",
+    c.nonce,
+    c.expiresAt,
+    c.signature
+  );
+  assert.equal(r.ok, false);
+});
+
+test("expired challenge is rejected", () => {
+  const c = issueRegisterChallenge("did:key:zABC");
+  const r = verifyRegisterChallenge(
+    c.did,
+    c.nonce,
+    Date.now() - 1000,
+    c.signature
+  );
+  assert.equal(r.ok, false);
+});
+
+test("forged signature is rejected", () => {
+  const c = issueRegisterChallenge("did:key:zABC");
+  const fake = Buffer.alloc(c.signature.length, "a").toString();
+  const r = verifyRegisterChallenge(c.did, c.nonce, c.expiresAt, fake);
+  assert.equal(r.ok, false);
+});
+
 console.log(`\n${passed} passed, ${failed} failed`);
 if (failed > 0) process.exit(1);

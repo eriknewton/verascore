@@ -1,5 +1,11 @@
 import { NextRequest } from "next/server";
 import { getAgents } from "@/lib/data";
+import {
+  verifyEd25519,
+  base64urlToBuffer,
+  publicKeyFromDid,
+} from "@/lib/crypto";
+import { verifyRegisterChallenge } from "@/lib/register-challenge";
 
 // ─── Rate limiter for POST /api/agents ────────────────────────────
 // Simple in-memory per-IP limiter: 5 stub agents per IP per hour.
@@ -54,12 +60,25 @@ export async function GET(request: NextRequest) {
 }
 
 /**
- * POST /api/agents — Create a stub agent record.
+ * POST /api/agents — Create a stub agent record (proof-of-possession required).
  *
- * Used by humans / agents registering a new agent identity before
- * any reputation data has been published. The stub starts at
- * trustTier=unverified, status=self-attested (claimStatus=unclaimed).
+ * DELTA-02: Two-step flow.
+ *   1) POST /api/agents/register-challenge → returns server-HMAC'd nonce
+ *   2) Client signs nonce with sanctuary_sign_challenge(purpose="verascore-register")
+ *   3) POST /api/agents with { did, nonce, expiresAt, challengeSignature,
+ *      signature, name, ... }
+ *
+ * The server verifies the HMAC (nonce came from us), then verifies the
+ * Ed25519 signature over the domain-separated message using the public
+ * key embedded in the did:key DID. Only on success is the Agent row
+ * created — preventing anonymous DID squatting.
  */
+
+const DELTA_NAME_MAX = 200;
+const DELTA_DESC_MAX = 2048;
+const DELTA_WEBSITE_MAX = 2048;
+const HTTPS_URL_REGEX = /^https?:\/\/[A-Za-z0-9._\-/:?&=%#~+,;@!$'()*]+$/;
+
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
   if (!checkPostRateLimit(ip)) {
@@ -76,11 +95,24 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  const { did, name, description, website } = body as {
+  const {
+    did,
+    name,
+    description,
+    website,
+    nonce,
+    expiresAt,
+    challengeSignature,
+    signature,
+  } = body as {
     did?: string;
     name?: string;
     description?: string;
     website?: string;
+    nonce?: string;
+    expiresAt?: number;
+    challengeSignature?: string;
+    signature?: string;
   };
 
   if (!did || typeof did !== "string" || !DID_REGEX.test(did)) {
@@ -89,11 +121,119 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     );
   }
+  if (!did.startsWith("did:key:")) {
+    return Response.json(
+      { error: "Only did:key DIDs are supported for registration" },
+      { status: 400 }
+    );
+  }
 
   if (!name || typeof name !== "string" || name.trim().length === 0) {
     return Response.json(
       { error: "Missing required field: name" },
       { status: 400 }
+    );
+  }
+  if (name.length > DELTA_NAME_MAX) {
+    return Response.json({ error: "name too long" }, { status: 400 });
+  }
+
+  // DELTA-11: input caps + website shape validation
+  if (description !== undefined) {
+    if (typeof description !== "string") {
+      return Response.json({ error: "description must be a string" }, { status: 400 });
+    }
+    if (description.length > DELTA_DESC_MAX) {
+      return Response.json(
+        { error: `description exceeds ${DELTA_DESC_MAX} characters` },
+        { status: 400 }
+      );
+    }
+  }
+  if (website !== undefined) {
+    if (typeof website !== "string") {
+      return Response.json({ error: "website must be a string" }, { status: 400 });
+    }
+    if (website.length > DELTA_WEBSITE_MAX) {
+      return Response.json({ error: "website too long" }, { status: 400 });
+    }
+    if (!HTTPS_URL_REGEX.test(website)) {
+      return Response.json(
+        { error: "website must be a valid http(s) URL" },
+        { status: 400 }
+      );
+    }
+  }
+
+  // DELTA-02: server-signed register-challenge must verify.
+  if (
+    typeof nonce !== "string" ||
+    typeof challengeSignature !== "string" ||
+    typeof signature !== "string" ||
+    typeof expiresAt !== "number"
+  ) {
+    return Response.json(
+      {
+        error:
+          "Proof-of-possession required. Call /api/agents/register-challenge first, " +
+          "then POST { did, nonce, expiresAt, challengeSignature, signature, name, ... }.",
+      },
+      { status: 400 }
+    );
+  }
+
+  const challengeCheck = verifyRegisterChallenge(
+    did,
+    nonce,
+    expiresAt,
+    challengeSignature
+  );
+  if (!challengeCheck.ok) {
+    return Response.json(
+      { error: `Invalid register-challenge: ${challengeCheck.error}` },
+      { status: 400 }
+    );
+  }
+
+  // DELTA-02: verify Ed25519 signature over the domain-separated message.
+  const publicKeyRaw = publicKeyFromDid(did);
+  if (!publicKeyRaw) {
+    return Response.json(
+      { error: "Unsupported DID — must be did:key with Ed25519 key" },
+      { status: 400 }
+    );
+  }
+
+  let sigBytes: Buffer;
+  try {
+    sigBytes = base64urlToBuffer(signature);
+  } catch {
+    return Response.json(
+      { error: "Invalid base64url signature" },
+      { status: 400 }
+    );
+  }
+  if (sigBytes.length !== 64) {
+    return Response.json(
+      { error: "signature must be a 64-byte Ed25519 signature" },
+      { status: 400 }
+    );
+  }
+
+  const DOMAIN_TAG = "sanctuary-sign-challenge-v1";
+  const PURPOSE = "verascore-register";
+  const message = Buffer.concat([
+    Buffer.from(DOMAIN_TAG, "utf-8"),
+    Buffer.from([0x00]),
+    Buffer.from(PURPOSE, "utf-8"),
+    Buffer.from([0x00]),
+    Buffer.from(nonce, "utf-8"),
+  ]);
+  const sigValid = verifyEd25519(message, sigBytes, publicKeyRaw);
+  if (!sigValid) {
+    return Response.json(
+      { error: "Invalid Ed25519 signature over register-challenge nonce" },
+      { status: 401 }
     );
   }
 
