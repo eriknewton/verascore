@@ -139,6 +139,29 @@ test("publicKeyFromDid round-trips with publicKeyToDidBase64url", () => {
   assert.equal(extracted!.toString("hex"), pub.toString("hex"));
 });
 
+test("publicKeyFromDid round-trips across many random keys (regression: encoding detection)", () => {
+  // Regression test for the encoding-detection bug: ~25% of base64url
+  // encodings happen to contain none of -, _, 0, O, I, l, so a naive
+  // heuristic misroutes them to base58btc decoding. Run 100 random
+  // keys to catch that class of mis-detection.
+  for (let i = 0; i < 100; i++) {
+    const { pub } = randomEd25519Key();
+    const did = publicKeyToDidBase64url(pub);
+    const extracted = publicKeyFromDid(did);
+    assert.ok(extracted, `round-trip failed for ${did}`);
+    assert.equal(extracted!.toString("hex"), pub.toString("hex"));
+  }
+});
+
+test("publicKeyFromDid handles LTAgent-reported DID (base64url with '0' char)", () => {
+  // Field-reported DID that broke the old heuristic: no -, no _,
+  // but contains '0' which base58btc excludes. Must decode correctly.
+  const did = "did:key:z7QEbW91E9evtY9bYBK0gjgd88GnVyzx8nUKpBW2uZJdd1g";
+  const extracted = publicKeyFromDid(did);
+  assert.ok(extracted, "failed to decode known-good base64url DID");
+  assert.equal(extracted!.length, 32);
+});
+
 console.log("\nDELTA-02 register-challenge HMAC:");
 import {
   issueRegisterChallenge,

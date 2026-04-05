@@ -61,25 +61,35 @@ export function base64urlToBuffer(str: string): Buffer {
 export function publicKeyFromDid(did: string): Buffer | null {
   if (!did.startsWith("did:key:z")) return null;
 
-  try {
-    const encoded = did.slice("did:key:z".length);
+  const encoded = did.slice("did:key:z".length);
 
-    // Detect encoding: base58btc has no hyphens or underscores.
-    // Some implementations (e.g. Sanctuary) use base64url after the "z" prefix.
-    const isBase64url = encoded.includes("-") || encoded.includes("_");
-    const decoded = isBase64url
-      ? base64urlToBuffer(encoded)
-      : Buffer.from(base58btcDecode(encoded));
-
-    // Ed25519 multicodec prefix is 0xed 0x01
-    if (decoded.length < 34 || decoded[0] !== 0xed || decoded[1] !== 0x01) {
-      return null;
+  // Both base58btc (standard did:key) and base64url (Sanctuary) are in
+  // use. The "z" multibase prefix nominally means base58btc, but Sanctuary
+  // uses base64url under the same prefix. We can't reliably distinguish
+  // by character-set heuristics alone — e.g. a base64url string that
+  // happens to contain none of "-", "_", "0", "O", "I", "l" is
+  // ambiguous. Instead, try each encoding and accept whichever
+  // produces a valid Ed25519 multicodec (0xed 0x01) + 32-byte key.
+  const tryDecode = (
+    decoder: (s: string) => Buffer | Uint8Array
+  ): Buffer | null => {
+    try {
+      const decoded = Buffer.from(decoder(encoded));
+      if (decoded.length === 34 && decoded[0] === 0xed && decoded[1] === 0x01) {
+        return decoded.subarray(2);
+      }
+    } catch {
+      // fall through
     }
-
-    return Buffer.from(decoded.slice(2));
-  } catch {
     return null;
-  }
+  };
+
+  // Try base64url first — it's what Sanctuary's quickstart and MCP
+  // server emit. Falls back to base58btc for standard did:key DIDs.
+  return (
+    tryDecode(base64urlToBuffer) ??
+    tryDecode((s) => base58btcDecode(s))
+  );
 }
 
 /**
