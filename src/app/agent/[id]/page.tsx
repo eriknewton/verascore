@@ -30,6 +30,12 @@ export default async function AgentProfilePage({ params }: PageProps) {
   const agent = await getAgent(id);
 
   if (!agent) {
+    console.log("[agent page] notFound triggered", {
+      rawId: id,
+      idLength: id.length,
+      idBytes: JSON.stringify(id),
+      startsWithDidKey: id.startsWith("did:key:"),
+    });
     notFound();
   }
 
