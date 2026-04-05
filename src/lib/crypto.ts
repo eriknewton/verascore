@@ -100,6 +100,41 @@ export function publicKeyMatchesDid(
   return submittedKey.equals(didKey);
 }
 
+/**
+ * Encode raw bytes to URL-safe base64 (no padding).
+ */
+export function bufferToBase64url(buf: Buffer): string {
+  return buf
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+}
+
+/**
+ * Derive a did:key identifier from a raw Ed25519 public key (32 bytes)
+ * using the base64url encoding that Sanctuary uses. The result is
+ * deterministic: a given public key always maps to exactly one DID.
+ *
+ * Returns `did:key:z<base64url(0xed 0x01 || pubkey)>`.
+ */
+export function publicKeyToDidBase64url(publicKeyRaw: Buffer): string {
+  if (publicKeyRaw.length !== 32) {
+    throw new Error("Ed25519 public key must be 32 bytes");
+  }
+  const multicodec = Buffer.concat([Buffer.from([0xed, 0x01]), publicKeyRaw]);
+  return `did:key:z${bufferToBase64url(multicodec)}`;
+}
+
+/**
+ * Derive a deterministic agent ID from a raw Ed25519 public key. Uses
+ * the base64url-encoded did:key string; this is stable, unique, and
+ * cannot be squatted by an attacker who does not control the key.
+ */
+export function deriveAgentId(publicKeyRaw: Buffer): string {
+  return publicKeyToDidBase64url(publicKeyRaw);
+}
+
 // ─── Base58btc ──────────────────────────────────────────────────
 // Minimal base58btc decoder (Bitcoin alphabet). No external deps.
 

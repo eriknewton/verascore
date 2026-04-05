@@ -1,5 +1,10 @@
 import { NextRequest } from "next/server";
-import { verifyEd25519, base64urlToBuffer, publicKeyMatchesDid } from "@/lib/crypto";
+import {
+  verifyEd25519,
+  base64urlToBuffer,
+  publicKeyMatchesDid,
+  deriveAgentId,
+} from "@/lib/crypto";
 import { checkRateLimit } from "@/lib/rate-limit";
 
 /**
@@ -29,14 +34,17 @@ const RATE_LIMIT_WINDOW = 5 * 60 * 1000;
 
 export async function POST(request: NextRequest) {
   const body = await request.json() as Record<string, unknown>;
-  const { agentId, signature, publicKey, type, data } = body;
+  const { signature, publicKey, type, data } = body;
+  // DELTA-03: agentId is NOT trusted from the caller — it is derived
+  // deterministically from the verified public key below. Any agentId
+  // submitted by the caller is ignored beyond basic shape logging.
 
   // ─── Field validation ─────────────────────────────────────────
-  if (!agentId || !signature || !publicKey || !type || !data) {
+  if (!signature || !publicKey || !type || !data) {
     return Response.json(
       {
         error: "Missing required fields",
-        required: ["agentId", "signature", "publicKey", "type", "data"],
+        required: ["signature", "publicKey", "type", "data"],
       },
       { status: 400 }
     );
@@ -51,8 +59,10 @@ export async function POST(request: NextRequest) {
   }
 
   // ─── Rate limiting ────────────────────────────────────────────
+  // Keyed on publicKey (cheap to pre-verify before signature check) —
+  // agentId is untrusted until we derive it from the verified key below.
   const rateCheck = checkRateLimit(
-    `publish:${agentId}`,
+    `publish:${publicKey as string}`,
     RATE_LIMIT_MAX,
     RATE_LIMIT_WINDOW
   );
@@ -106,6 +116,27 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  // ─── DELTA-03: derive agentId deterministically from public key ──
+  // agentId is NOT attacker-controllable; it is the base64url did:key
+  // derived from the verified Ed25519 public key. Any caller-supplied
+  // agentId value is ignored.
+  const derivedAgentId = deriveAgentId(publicKeyBytes);
+
+  // If the caller included a `did` in data, it MUST match the derived
+  // did:key — reject mismatches to prevent DID squatting.
+  const dataRecord = data as Record<string, unknown>;
+  const payloadDid = typeof dataRecord.did === "string" ? dataRecord.did : "";
+  if (payloadDid && payloadDid.startsWith("did:key:")) {
+    const didMatches = publicKeyMatchesDid(publicKey as string, payloadDid);
+    if (!didMatches) {
+      return Response.json(
+        { error: "data.did does not match publicKey (DID squatting rejected)" },
+        { status: 403 }
+      );
+    }
+  }
+  const agentId = derivedAgentId;
+
   // ─── Database path ────────────────────────────────────────────
   if (process.env.DATABASE_URL) {
     const { prisma } = await import("@/lib/db");
@@ -113,22 +144,20 @@ export async function POST(request: NextRequest) {
     // ─── Auto-create path ───────────────────────────────────────
     // When a signed DID arrives without an existing agent record,
     // we auto-upsert a stub agent. The signature is the trust anchor;
-    // the stub starts at unverified/self-attested.
-    let agent = await prisma.agent.findUnique({ where: { id: agentId as string } });
+    // the stub starts at unverified/self-attested. agentId and did
+    // are both derived from the verified public key.
+    let agent = await prisma.agent.findUnique({ where: { id: agentId } });
     if (!agent) {
-      const dataRecord = data as Record<string, unknown>;
       const payloadName = typeof dataRecord.name === "string" ? dataRecord.name : undefined;
-      const didStr = typeof dataRecord.did === "string" ? dataRecord.did : "";
-      // Fragment: last 8 chars of DID, or agentId fallback
-      const fragment =
-        (didStr || (agentId as string)).slice(-8) || (agentId as string);
+      // derivedAgentId is the full did:key string; use last 8 chars as fragment.
+      const fragment = derivedAgentId.slice(-8);
       const defaultName = payloadName ?? `agent-${fragment}`;
 
       agent = await prisma.agent.create({
         data: {
-          id: agentId as string,
+          id: agentId,
           name: defaultName,
-          did: didStr,
+          did: derivedAgentId,
           keyType: "ed25519",
           platform:
             typeof dataRecord.platform === "string" ? dataRecord.platform : "unknown",
@@ -141,10 +170,11 @@ export async function POST(request: NextRequest) {
           capabilities: [],
         },
       });
-    }
-
-    // Verify publicKey matches the agent's registered DID
-    if (agent.did && agent.did.startsWith("did:key:")) {
+    } else if (agent.did && agent.did.startsWith("did:key:")) {
+      // Existing row: its registered DID must still match the
+      // verified public key. (Belt-and-suspenders: agentId is derived
+      // from pubkey, so collisions shouldn't happen — but defense-in-
+      // depth in case of legacy rows.)
       const didMatch = publicKeyMatchesDid(publicKey as string, agent.did);
       if (!didMatch) {
         return Response.json(
@@ -153,8 +183,6 @@ export async function POST(request: NextRequest) {
         );
       }
     }
-    // If agent has no DID or a non-did:key DID, skip DID matching
-    // (the signature alone is the trust anchor until DID is registered)
 
     switch (type as string) {
       case "shr": {
@@ -170,7 +198,7 @@ export async function POST(request: NextRequest) {
         }
 
         await prisma.agent.update({
-          where: { id: agentId as string },
+          where: { id: agentId },
           data: updates,
         });
 
@@ -179,7 +207,7 @@ export async function POST(request: NextRequest) {
           for (const layer of layers) {
             await prisma.sovereigntyLayer.upsert({
               where: {
-                agentId_name: { agentId: agentId as string, name: layer.name as string },
+                agentId_name: { agentId: agentId, name: layer.name as string },
               },
               update: {
                 score: layer.score as number,
@@ -187,7 +215,7 @@ export async function POST(request: NextRequest) {
                 description: layer.description as string,
               },
               create: {
-                agentId: agentId as string,
+                agentId: agentId,
                 name: layer.name as string,
                 label: layer.label as string,
                 score: layer.score as number,
@@ -209,7 +237,7 @@ export async function POST(request: NextRequest) {
           for (const dim of dims) {
             await prisma.reputationDimension.upsert({
               where: {
-                agentId_name: { agentId: agentId as string, name: dim.name as string },
+                agentId_name: { agentId: agentId, name: dim.name as string },
               },
               update: {
                 score: dim.score as number,
@@ -218,7 +246,7 @@ export async function POST(request: NextRequest) {
                 description: dim.description as string,
               },
               create: {
-                agentId: agentId as string,
+                agentId: agentId,
                 name: dim.name as string,
                 score: dim.score as number,
                 maxScore: dim.maxScore as number,
@@ -293,7 +321,7 @@ export async function POST(request: NextRequest) {
           },
           create: {
             id: att.id as string,
-            initiatorId: agentId as string,
+            initiatorId: agentId,
             responderId: att.responderId as string,
             timestamp: new Date((att.timestamp as string) ?? Date.now()),
             expiresAt: new Date(
@@ -329,7 +357,7 @@ export async function POST(request: NextRequest) {
         for (const layer of layers) {
           await prisma.sovereigntyLayer.upsert({
             where: {
-              agentId_name: { agentId: agentId as string, name: layer.name as string },
+              agentId_name: { agentId: agentId, name: layer.name as string },
             },
             update: {
               score: layer.score as number,
@@ -337,7 +365,7 @@ export async function POST(request: NextRequest) {
               description: layer.description as string,
             },
             create: {
-              agentId: agentId as string,
+              agentId: agentId,
               name: layer.name as string,
               label: layer.label as string,
               score: layer.score as number,
@@ -348,7 +376,7 @@ export async function POST(request: NextRequest) {
         }
 
         await prisma.agent.update({
-          where: { id: agentId as string },
+          where: { id: agentId },
           data: { lastActive: new Date() },
         });
 
